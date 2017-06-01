@@ -1,0 +1,74 @@
+  <div class="container-fluid">
+
+
+<%= Date.today %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Previous Advocate</th>
+      <th>Previous Date</th>
+      <th>Advocate Appearing</th>
+      <th>Client Fee Due</th>
+      <th>File No</th>
+      <th>Case Details</th>
+      <th>Current Position Stage</th>
+      <th>Next Stage</th>
+      <th>Next Date</th>
+      <th>Hearing Fee</th>
+      <th>Important</th> 
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+
+         <td></td>
+          <td></td>
+          <td>
+          
+            <% @hearings.each do |hearing| %> 
+            <ul>
+            <li><%= hearing.advocate.name %></li>
+            </ul>
+            <% end %>
+          </td>
+          <td>
+            <% @hearings.each do |hearing| %>
+            <ul>
+              <li><%= hearing.amount %></li>
+            </ul>
+            <% end %>
+
+          </td>
+          <td>
+            <% @client_cases.each do |client_case| %>
+            <ul>
+            <li> <%= client_case.file_no %></li>
+            </ul>
+            <% end %>
+          </td>
+          <td>
+            <% @client_cases.each do |client_case| %>
+            <ul>
+            <li> <%= client_case.case_format %></li>
+            </ul>
+            <% end %>
+          </td>
+          <td>
+            
+             <% @hearings.each do |hearing| %>
+            <ul>
+              <li><%= hearing.case_status %></li>
+            </ul>
+            <% end %>
+          </td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+      
+ 
+    </tr>
+  </tbody>
+</table>
+
+</div>

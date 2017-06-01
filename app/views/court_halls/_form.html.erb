@@ -1,0 +1,25 @@
+<%= form_for(@court_hall) do |f| %>
+  <% if @court_hall.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@court_hall.errors.count, "error") %> prohibited this court_hall from being saved:</h2>
+
+      <ul>
+      <% @court_hall.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :court_complex_id %><br>
+    <%= f.collection_select :court_complex_id, CourtComplex.all, :id, :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,294 @@
+body{
+    background-color: #edf1f5 !important;
+}
+
+ol.breadcrumb{
+    background-color: #fdfdfd;
+}
+
+nav.navbar.navbar-default{
+    /*padding:20px 0px;*/
+    background-color: #babcbd;
+    background-image: none;
+}
+
+ul.nav.navbar-nav.navbar-right li a{
+    color: #1b1818;
+}
+
+.navbar{
+    margin-bottom: 10px !important;
+}
+
+.breadcrumb{
+    margin-bottom: 0px !important;
+}
+
+ol.breadcrumb li a{
+    color: #502e2e;
+}
+
+ol.breadcrumb li a:hover{
+    text-decoration: none;
+}
+
+
+.container-fluid h1{
+    font-size: 20px !important;
+    color: #9a3333;
+    font-weight: 600;
+    margin: 0;
+    margin-top: 5px;
+}
+
+table.table{
+   /* border: 1px solid #c3b2b2;*/
+   background-color: #fff;
+}
+
+table.table th{
+    font-size: 17px;
+    color: #403e3e;
+}
+
+a.btn.btn-primary{
+    float:right;
+}
+
+a.navbar-brand img{
+    width:100px;
+}
+
+nav.navbar.navbar-default{
+     background-color: #8c9faf;
+
+}
+
+.main-heading{
+    background-color: #fff;
+    margin-bottom: 10px;
+    padding: 8px;
+    margin-top: 10px;
+}
+
+.main-heading-body{
+    padding: 10px 20px;
+    background-color: #fff;
+}
+
+ .main-heading-body .btn{
+    padding: 1px 18px;
+}
+
+.table td{
+    padding: 6px !important;
+}
+
+
+
+/* clients index */
+
+
+
+
+
+
+ 
+
+
+
+
+
+/* client cases show */
+
+
+.client-cases-show h2{
+    background-color: #bfbfbf;
+    padding: 10px;
+    color: #403f3f;
+    font-size: 22px;
+}
+
+.client-cases-show h4,
+.hearings-show h4{
+    font-size: 20px;
+    font-weight: 600;
+    color: #753d3d;
+}
+
+.client-info{
+    border: 1px solid #c5c3c3;
+    padding: 20px;
+    background-color: #fff;
+}
+
+
+/* clients show */
+
+.clients-show h3{
+    
+    font-size: 23px;
+    font-weight: 500;
+    color: #3e3030;
+}
+
+.clients-show .client-information{
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c5c3c3;
+}
+
+.clients-show .client-information h3{
+    margin:0;
+}
+
+.clients-show .client-information a.btn.btn-info{
+    float:right;
+    width: 80px;
+    height: 25px;
+    padding: 2px;
+}
+
+.clients-show .client-info ul{
+    padding-left: 15px;
+}
+
+.clients-show .client-info ul li{
+    list-style-type: none;
+}
+
+.clients-show .client-info ul li a{
+    color: #232020;
+}
+
+.clients-show .client-info i.fa.fa-gavel{
+    padding-right: 10px;
+    color: #442f2f;
+}
+
+
+/* client cases new */
+
+.client-cases-new {
+    background-color: #fff;
+    padding: 20px;
+}
+
+/* client cases show */
+
+
+.client-cases-show .case-details{
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c5c3c3;
+}
+
+.client-cases-show .case-details h3{
+    margin:0;
+}
+
+.client-cases-show .case-details a.btn.btn-info{
+    float: right;
+}
+
+.client-cases-show .client-cases-show-body{
+    padding: 10px 20px;
+    background-color: #fff;
+}
+
+
+.client-cases-show .client-cases-show-body .btn-success {
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+    padding: 5px 6px;
+    font-size: 12px;
+    border-radius: 0px;
+}
+
+/* client case edit */
+
+.client-cases-edit{
+   margin-bottom: 10px;
+    background-color: #fff;
+
+}
+
+.client-cases-edit h1{
+    padding: 10px;
+}
+
+
+
+/* advocates show */
+
+.advocate-info{
+	border: 1px solid #c5c3c3;
+    padding: 20px;
+}
+
+/* cases index */
+
+.cases-index .table th{
+    font-size: 13px;
+}
+
+.cases-index .table td{
+    font-size: 12px;
+}
+
+
+/* hearings show */
+
+.hearings-show .hearing-details{
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #c5c3c3;
+}
+
+.hearings-show .hearing-details h3{
+    margin: 0;
+    font-size: 21px;
+}
+
+.hearings-show .hearing-details  a.btn.btn-info{
+    float:right;
+}
+
+.hearings-show .hearing-details .btn{
+    padding: 3px 20px;
+}
+
+.hearings-show h2{
+    background-color: #bfbfbf;
+    padding: 10px;
+    color: #403f3f;
+    font-size: 22px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

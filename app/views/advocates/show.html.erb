@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <p id="notice"><%= notice %></p>
+
+
+
+    <div class="row">
+        <div class="col-md-3">
+
+        <div class="advocate-info">
+
+            <h3> Basic Data </h3>
+
+            <p><strong>Name:</strong><%= @advocate.name %></p>
+            <p><strong>Email:</strong><%= @advocate.email %></p>
+            <p><strong>Mobile:</strong><%= @advocate.mobile %></p>
+            <p><strong>Roll no:</strong><%= @advocate.roll_no %></p>
+
+            <%= link_to 'Edit', edit_advocate_path(@advocate) %> |
+            <%= link_to 'Back', advocates_path %>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+      <div class="advocate-info">
+          <h3> My cases </h3>
+
+          <% @advocate.client_cases.each do |client_case| %>
+
+            <ul>
+              <li><%= link_to client_case.name, client_case_path(client_case) %></li>
+            </ul>
+
+          <% end %>
+
+      </div>
+      </div>
+
+
+    </div>
+
+
+</div>
+
