@@ -1,5 +1,4 @@
 <div class="container-fluid">
-<p id="notice"><%= notice %></p>
 <div class="hearings-index">
 
   <div class="main-heading">
@@ -13,7 +12,6 @@
   <thead>
     <tr>
       <th>Date of hearing</th>
-      
       <th>Advocate</th>
       <th>Case status</th>
       <th>Case</th>
@@ -26,10 +24,9 @@
     <% @hearings.each do |hearing| %>
       <tr>
         <td><%= hearing.date_of_hearing.to_date %></td>
-
         <td><%= hearing.advocate.name %></td>
         <td><%= hearing.case_status %></td>
-        <td><%= hearing.client_case.try(:name) %></td>
+        <td><%= hearing.client_case.case_format %></td>
         <td><%= hearing.amount %></td>
         <td><%= link_to client_case_hearing_path(hearing.client_case, hearing), class: "btn btn-success" do %> Show <% end %></td>
         <td><%= link_to edit_client_case_hearing_path(hearing.client_case, hearing), class: "btn btn-info" do %>Edit <% end %></td>

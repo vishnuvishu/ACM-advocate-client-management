@@ -1,0 +1,93 @@
+<div class="container-fluid">
+
+
+<div class="row">
+<div class="col-md-6">
+<div class="row">
+<div class="col-md-12">
+<table class="table">
+                 
+    <tbody>
+
+      <tr>
+        <td><strong>Notice no:</strong></td>
+        <td><p><%= @notice.notice_no %></p></td>
+      </tr>
+
+      <tr>
+        <td><p><strong>Client:</strong></p></td>
+        <td><p><%= @notice.client.name %></p></td>
+      </tr>
+
+      <tr>
+        <td><p><strong>Opponent name:</strong></p></td>
+        <td><p><%= @notice.opponent_name %></p></td>
+      </tr>
+
+      <tr>
+        <td><p><strong>Opponent address:</strong></p></td>
+        <td><p><%= @notice.opponent_address %></p></td>
+      </tr>
+
+      <tr>
+        <td><p><strong>Date of notice:</strong></p></td>
+        <td><p><%= @notice.date_of_notice %></p></td>
+      </tr>
+
+        <tr>
+        <td><p><strong>Cover:</strong></p></td>
+        <td><p><%= image_tag(@notice.cover.url, size:"25x25") %><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Add New Image</button></p></td>
+      </tr>
+
+    </tbody>
+ </table>
+ </div>
+</div>
+
+<script>
+$(document).ready(function(){
+  $(".small-image").click(function(event){
+    $("#cover_image").empty()
+    $("#cover_image").append("<img src="+event.target.src+" width= ,'200px' height='200px'>")
+  })
+})
+</script>
+
+
+<div class="row">
+<div class="col-md-12">
+
+<table class="table">
+                 
+    <tbody>
+      <% @notice_images.each do |notice_image| %>
+          <tr>
+            <td><a href="#" class="small-image" id="<%= notice_image.notice_image.url %>"><%= image_tag(notice_image.notice_image.url, size:"25x25")  %></a></td>
+            <td><p><%= notice_image.name %></p></td>
+            
+           </tr>
+      <% end %>
+    </tbody>
+ </table>
+
+</div>
+</div>
+
+</div>
+
+<div class="col-md-6 image-display" id ="cover_image">
+  <%= image_tag(@notice.cover.url) %>
+</div>
+
+</div>
+
+<%#= link_to 'Edit', edit_notice_path(@notice) %> 
+<%#= link_to 'Back', notices_path %>
+</div>
+
+
+
+</div>
+
+
+

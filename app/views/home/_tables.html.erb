@@ -1,0 +1,199 @@
+<div class="container-fluid">
+<div class="home-page" id= "reload">
+
+<table class="table table-bordered" id="main-table">
+
+  <thead>
+    <tr>
+      <th><h5 data-toggle="tooltip" title="Previous Advocate">Prev Adv</h5></th>
+      <th><h5 data-toggle="tooltip" title="Previous Date">Prev Date</h5></th>
+      <th><h5 data-toggle="tooltip" title="File Number">File No</h5></th>
+      <th><h5 data-toggle="tooltip" title="Case Details">Case Details</h5></th>
+      <th><h5 data-toggle="tooltip" title="Current Position Stage">Current Position Stage</h5></th>
+      <th><h5 data-toggle="tooltip" title="Advocate Appearing">Adv App</h5></th>
+      <th><h5 data-toggle="tooltip" title="Client Fee Due">CFD</h5></th>
+      <th><h5 data-toggle="tooltip" title="Next Stage">Next Stage</h5></th>
+      <th><h5 data-toggle="modal" data-target="#myModal">Next Date</h5></th>
+      <th><h5 data-toggle="tooltip" title="Hearing Fee Pending">HFP</h5></th>
+      <th><h5 data-toggle="tooltip" title="To Do List">To Do List</h5></th> 
+    </tr>
+  </thead>
+
+
+  <tbody>
+            
+
+ <% @hearings.each do |hearing| %>
+
+      <tr>
+        <td >
+          <%#= if hearing.client_case.hearings[-3] != nil
+
+          hearing.client_case.hearings[-3].try(:advocate).try(:name) 
+          end %>
+           <% client_hearings = hearing.client_case.hearings %> 
+           <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+
+            <% if client_hearings.count == 1 %>
+              -
+          <% else %>
+            <%= next_hearings[0].advocate_id %>
+          <% end %>
+        <td >
+          <%#= if hearing.client_case.hearings[-3] != nil
+          hearing.client_case.hearings[-3].try(:date_of_hearing).strftime("%Y-%m-%d") 
+          end %>
+
+          <%= hearing.client_case.hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
+        </td>
+      
+
+        <td>
+          <%= hearing.client_case.file_no %>
+        </td>
+
+        <td>
+         <%= link_to hearing.client_case.case_format, client_client_case_path(hearing.client_case.client, hearing.client_case) %>
+        </td>
+
+        <td>
+          <%= link_to hearing.case_status, client_case_hearing_path(hearing.client_case, hearing) %>
+        </td>
+
+        <td >
+          <%= link_to hearing.advocate.name, advocate_path(hearing.advocate) %>
+        </td>
+
+        <td>
+          <%= hearing.amount %>
+        </td>
+
+
+
+        <td>
+          <% client_hearings = hearing.client_case.hearings %> 
+           <% next_hearings =  client_hearings.where('date_of_hearing >= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+          <% if client_hearings.count == 1 %>
+              -
+          <% else %>
+            <%= next_hearings[1].case_status %> 
+          <% end %>
+        </td> 
+          
+      
+
+        <td>
+        <% if client_hearings.count == 1 %>
+              -
+          <% else %>
+          <%= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
+          <% end %>
+        </td>
+
+        <td>
+         <% if client_hearings.count == 1 %>
+              -
+          <% else %>
+        <%= hearing.amount %>
+          <% end %>
+        </td>
+
+        <td>
+
+         <%= link_to "Add To Do", new_to_do_list_path(@to_do_list, :client_case => hearing.client_case_id) %>
+
+        </td>
+  </tr>
+  <% end %>
+  </tbody>
+
+
+</table>
+</div>
+</div>
+
+
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add Your Hearing</h4>
+        </div>
+        <div class="modal-body">
+
+
+
+                <%= form_for([Hearing.new]) do |f| %>
+                  <div class="field">
+                    <%= f.label :date_of_hearing %><br>
+                    <%= f.text_field :date_of_hearing %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :advocate_id %><br>
+                    <%= f.collection_select :advocate_id, Advocate.all, :id , :name %>
+                  </div>
+                  <div class="field">
+                    <%= f.label :case_status %><br>
+                    <%= f.text_area :case_status %>
+                  </div>
+                  
+                  <%#= f.hidden_field :client_case_id, value: @client_case.id %> 
+
+                  <div class="field">
+                    <%= f.label :client_case_id %><br>
+                    <%= f.collection_select :client_case_id, ClientCase.all, :id, :case_format %>
+                  </div>
+
+                  <div class="field">
+                    <%= f.label :amount %><br>
+                    <%= f.text_field :amount , :value => 500 %>
+                  </div><br>
+                  <div class="actions">
+                    <%= f.submit %>
+                  </div>
+                <% end %>
+
+                 <script>
+                    $( function() {
+                      $( "#hearing_date_of_hearing" ).datepicker({
+                        dateFormat: 'yy-mm-dd',
+                        // minDate: 0,
+                        changeMonth: true,
+                        changeYear: true
+                      });
+                    } );
+                  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+<script>
+$(document).ready(function(){
+    $('#main-table').DataTable();
+});
+</script>

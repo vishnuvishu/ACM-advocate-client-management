@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+
 
 <p>
   <strong>Hearing:</strong>
@@ -6,18 +6,13 @@
 </p>
 
 <p>
-  <strong>Amount paid:</strong>
-  <%= @fee.amount_paid %>
+  <strong>Amount:</strong>
+  <%= @fee.amount %>
 </p>
 
 <p>
-  <strong>Fee paid date:</strong>
-  <%= @fee.fee_paid_date %>
-</p>
-
-<p>
-  <strong>Fee comment:</strong>
-  <%= @fee.fee_comment %>
+  <strong>comment:</strong>
+  <%= @fee.comment %>
 </p>
 
 <%= link_to 'Edit', edit_fee_path(@fee) %> |

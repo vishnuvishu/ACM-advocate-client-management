@@ -1,0 +1,55 @@
+<div class="container-fluid">
+
+  <div class="main-heading">
+<div class="row">
+
+  <div class="col-md-6">
+      <h1>All Invoices</h1>
+  </div>
+
+  <div class="col-md-6">
+    <%= link_to new_invoice_path, class: "btn btn-primary" do %>
+      <i class="glyphicon glyphicon-plus"> </i> Add New Invoice
+    <% end %>
+  </div>
+</div>
+</div>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th width="5%">Invoice number</th>
+      <th width="5%">Client</th>
+      <th width="20%">Client case</th>
+      <th width="10%">Bill date</th>
+      <th width="10%">Due date</th>
+      <th width="10%">Amount</th>
+      <th width="40%">Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @invoices.each do |invoice| %>
+      <tr>
+        <td><%= invoice.invoice_number %></td>
+        <td><%= invoice.client.try(:name) %></td>
+        <td><%= invoice.client_case.try(:case_format) %></td>
+        <td><%= invoice.bill_date.strftime("%d-%m-%Y") %></td>
+        <td><%= invoice.due_date.strftime("%d-%m-%Y") %></td>
+        <td><%= invoice.amount %></td>
+        <td><%= invoice.description %></td>
+        <td><%= link_to invoice, class: "btn btn-success" do %> Show <% end %></td>
+        <td><%= link_to edit_invoice_path(invoice), class: "btn btn-info" do %>Edit <% end %></td>
+
+       <!--  <td><%#= link_to 'Destroy', invoice, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%#= link_to 'New Invoice', new_invoice_path %>
+</div>

@@ -1,5 +1,4 @@
 <div class="container-fluid">
-<p id="notice"><%= notice %></p>
 
 
 <div class="main-heading">
@@ -23,9 +22,9 @@
       <tr>
         <td><%= all_mobile.mobile %></td>
         <td><%= all_mobile.client.name %></td>
-        <td><%= link_to all_mobile, class: "btn btn-success" do %> Show <% end %></td>
-        <td><%= link_to edit_all_mobile_path(all_mobile), class: "btn btn-info" do %>Edit <% end %></td>
-        <td><%= link_to all_mobile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>Delete<% end %></td>
+      <!--   <td><%#= link_to all_mobile, class: "btn btn-success" do %> Show <%# end %></td>
+        <td><%#= link_to edit_all_mobile_path(all_mobile), class: "btn btn-info" do %>Edit <%# end %></td>
+        <td><%#= link_to all_mobile, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>Delete<%# end %></td> -->
       </tr>
     <% end %>
   </tbody>

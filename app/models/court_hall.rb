@@ -1,6 +1,6 @@
 class CourtHall < ActiveRecord::Base
 
-	belongs_to :client_case
+	
 	belongs_to :court_complex
 	belongs_to :state
 

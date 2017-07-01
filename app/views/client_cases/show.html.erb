@@ -1,6 +1,5 @@
 <div class="container-fluid">
 
-<p id="notice"><%= notice %></p>
 <div class="client-cases-show">
   <div class="row">
     <div class="col-md-12">
@@ -16,7 +15,11 @@
      <h3> Case Details </h3>
       </div>
       <div class="col-md-6">
+      <% if params[:client_id].present? %>
       <%= link_to edit_client_client_case_path(@client, @client_case), class: "btn btn-info" do %>Edit<% end %> 
+      <% else %>
+      <%= link_to edit_client_client_case_path(@advocate, @client_case), class: "btn btn-info" do %>Edit<% end %> 
+      <% end %>
       </div>
     </div>
     </div>
@@ -41,15 +44,12 @@
 
   <div class="col-md-6">
 
-  
-<table class="table" border="0">
+  <div class="row">
+    <div class="col-md-12">
+
+        <table class="table" border="0">
 
   <tbody>
-    <tr>
-      <td><p><strong>Name:</strong></p></td>
-      <td><p><%= @client_case.name %></p></td>
-    </tr>
-
      <tr>
       <td><p><strong>Client:</strong></p></td>
       <td><p> <%= @client_case.client.name %></p></td>
@@ -68,7 +68,7 @@
      <tr>
 
       <td><p><strong>Court hall:</strong></p></td>
-      <td><p><%= @client_case.court_hall.name %></p></td>
+      <td><p><%= @client_case.court_hall %></p></td>
     </tr>
 
     <!--  <tr>
@@ -120,6 +120,49 @@
   </tbody>
 </table>
 
+    </div>
+  </div>
+
+  <div class="row">
+  <div class="col-md-12">
+  <table class="table" border="0">
+
+  <tbody>
+    <tr>
+      <td><p><strong>Amount to be paid:</strong></p></td>
+      <% amount_to_be_paid = 0 %>
+      <td><p>
+        <% amount_to_be_paid = @client_case.hearings.pluck(:amount).inject(0){|sum,x| sum + x } %>
+        <%= amount_to_be_paid %>
+      </p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>Amount paid:</strong></p></td>
+      <td><p>
+        <% total_amount_paid = 0 %>
+        <% @client_case.hearings.each do |hearing| %>
+          <% total_amount_paid = total_amount_paid + hearing.payments.pluck(:amount).inject(0){|sum,x| sum + x } %>
+        <% end %>
+        <%= total_amount_paid %>
+      </p></td>
+    </tr>
+
+     <tr>
+      <td><p><strong>Balance:</strong></p></td>
+      <td><p><%= amount_to_be_paid - total_amount_paid %></p></td>
+    </tr>
+
+    
+    
+  </tbody>
+</table>
+  </div>
+
+  </div>
+
+  
+
   </div>
 
   <div class="col-md-6">
@@ -139,7 +182,7 @@
    <% @client_case.hearings.each_with_index do |hearing, index| %>
     <tr>
         <td> <%= index + 1 %> </td>
-        <td><%= hearing.date_of_hearing.to_date %></td>
+        <td><%= hearing.date_of_hearing.to_date.strftime("%d-%m-%Y") %></td>
         <td><%= hearing.advocate.name %></td>
         <td><%= hearing.case_status %></td>
         <td><%= link_to client_case_hearing_path(hearing.client_case, hearing), class: "btn btn-success" do %> Show <% end %></td>
@@ -152,7 +195,7 @@
 
 </div>
 
- 
+
 
 
 

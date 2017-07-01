@@ -2,6 +2,8 @@ class Client < ActiveRecord::Base
 
 	has_many :client_cases
 	has_many :all_mobiles
+	has_many :invoices
+	has_many :notices
 	accepts_nested_attributes_for :all_mobiles, :allow_destroy => true
 
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170525120145) do
+ActiveRecord::Schema.define(version: 20170701071111) do
 
   create_table "advocates", force: :cascade do |t|
     t.string   "name"
@@ -33,42 +33,28 @@ ActiveRecord::Schema.define(version: 20170525120145) do
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "code"
-  end
-
-  create_table "cases", force: :cascade do |t|
-    t.string   "name"
-    t.integer  "client_id"
-    t.string   "case_number"
-    t.integer  "case_type_id"
-    t.integer  "court_hall_id"
-    t.integer  "court_complex_id"
-    t.integer  "case_year"
-    t.string   "file_no"
-    t.integer  "state_id"
-    t.integer  "district_id"
-    t.boolean  "status"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-    t.integer  "advocate_id"
   end
 
   create_table "client_cases", force: :cascade do |t|
-    t.string   "name"
     t.integer  "client_id"
     t.string   "case_number"
     t.integer  "case_type_id"
-    t.integer  "court_hall_id"
     t.integer  "court_complex_id"
-    t.integer  "advocate_id"
     t.string   "file_no"
     t.integer  "state_id"
     t.integer  "district_id"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
     t.string   "case_status"
     t.text     "nature_of_case"
     t.string   "case_year"
+    t.string   "advocate_for"
+    t.integer  "advocate_id"
+    t.string   "rank_of_party"
+    t.string   "rank_of_opponent_party"
+    t.string   "client_name"
+    t.string   "opponent_name"
+    t.string   "court_hall"
   end
 
   create_table "clients", force: :cascade do |t|
@@ -114,11 +100,10 @@ ActiveRecord::Schema.define(version: 20170525120145) do
 
   create_table "fees", force: :cascade do |t|
     t.integer  "hearing_id"
-    t.integer  "amount_paid"
-    t.datetime "fee_paid_date"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.text     "fee_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text     "comment"
+    t.integer  "amount"
   end
 
   create_table "hearings", force: :cascade do |t|
@@ -131,10 +116,61 @@ ActiveRecord::Schema.define(version: 20170525120145) do
     t.integer  "client_case_id"
   end
 
+  create_table "invoices", force: :cascade do |t|
+    t.string   "invoice_number"
+    t.integer  "client_id"
+    t.integer  "client_case_id"
+    t.date     "bill_date"
+    t.date     "due_date"
+    t.integer  "amount"
+    t.text     "description"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  create_table "notice_images", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "notice_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.string   "notice_image"
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.string   "notice_no"
+    t.integer  "client_id"
+    t.string   "opponent_name"
+    t.text     "opponent_address"
+    t.date     "date_of_notice"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "cover"
+  end
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "hearing_id"
+    t.integer  "amount"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "states", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "to_do_lists", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.date     "list_date"
+    t.integer  "client_case_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.integer  "advocate_to"
+    t.boolean  "is_litigation"
+    t.string   "advocate_from"
   end
 
   create_table "users", force: :cascade do |t|

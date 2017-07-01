@@ -1,0 +1,98 @@
+
+<div class="invoices-show">
+    
+    
+
+
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="../images/advocates-logo3.png" style="width:100%; width: 150px;">
+                            </td>
+                            
+                            <td>
+
+                                Invoice No: <%= @invoice.invoice_number %><br>
+                                Bill Date: <%= @invoice.bill_date %><br>
+                                Due Date: <%= @invoice.due_date %>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information">
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            <td>
+                                <strong>Rajagopala Naidu </strong><br>
+                                <strong>K.R.Pradeep Associates</strong><br>
+                                # 31/9, "NCP Tower", 1st Floor, <br>
+                                1st Main, Mount Joy Extension,<br>
+                                Hanumanthanagar (Behind BMS Engg. College Hostel)<br>
+                                Bengaluru - 560019
+
+
+                            </td>
+                            
+                            <td>
+                                <%= @invoice.client.name %><br>
+                                <%= @invoice.client.address.capitalize %><br>
+                                <%= @invoice.client.email %><br>
+                                <%= @invoice.client.primary_mobile %>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            
+            
+            <tr class="heading">
+                <td>
+                    Particulars
+                </td>
+                
+                <td>
+                    Amount
+                </td>
+            </tr>
+            
+            <tr class="item">
+                <td>
+                    <%= @invoice.description %>
+                </td>
+                
+                <td>
+                    Rs.<%= @invoice.amount %>
+                </td>
+            </tr>
+            
+          
+            
+            <tr class="total">
+                <td></td>
+                
+                <td>
+                   Total: Rs.<%= @invoice.amount %>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>
+
+<div class="container">
+    <div class="row invoice-download-btn">
+        <div class="col-md-2 col-md-offset-8">
+                <%= link_to invoice_path(@invoice, format:"pdf"), class: "btn btn-success" do %> Download Invoice <% end %>
+        </div>
+    </div>
+</div>

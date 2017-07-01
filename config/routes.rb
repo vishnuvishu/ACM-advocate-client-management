@@ -1,8 +1,14 @@
 Rails.application.routes.draw do
+  resources :payments
+  resources :notice_images
+  resources :notices
+  resources :invoices
+  resources :to_do_lists
   resources :all_mobiles
   devise_for :users
   
   get 'home/index'
+  get 'home/reload_table'
   get 'states/select_districts'
   get 'districts/select_court_complexes'                       
 
@@ -28,6 +34,18 @@ Rails.application.routes.draw do
 
   resources :hearings do
     resources :fees
+  end
+
+  resources :hearings do
+    resources :payments
+  end
+
+  resources :advocates do 
+    resources :client_cases
+  end
+
+   resources :client_cases do 
+    resources :to_do_lists
   end
  
   resources :client_cases

@@ -1,10 +1,14 @@
 <div class="container-fluid">
 <div class="hearings-show">
-<p id="notice"><%= notice %></p>
 
 <div class="row">
   <div class="col-md-12">
-      <h2><strong>Case : </strong><%= @client_case.case_format %></h2>
+      <h2><strong>Case : </strong><%= link_to @client_case.case_format %></h2>
+
+
+
+
+
   </div>
 </div>
 
@@ -26,11 +30,11 @@
   <div class="hearing-details">
     <div class="row">
       <div class="col-md-6">
-      <h3> Fee Details  </h3>
+      <h3> Payment Details  </h3>
       </div>
       <div class="col-md-6">
-       <%= link_to new_hearing_fee_path(@hearing, @fee), class: "btn btn-primary" do %>
-           <i class="glyphicon glyphicon-plus"> </i> Add New Fee
+       <%= link_to new_hearing_payment_path(@hearing, @payment), class: "btn btn-primary" do %>
+           <i class="glyphicon glyphicon-plus"> </i> Add New Payment
         <% end %>
       </div>
     </div>
@@ -47,7 +51,7 @@
   <tbody>
     <tr>
       <td><p><strong>Date of hearing:</strong><p></td>
-      <td><p><%= @hearing.date_of_hearing.to_date %></p></td>
+      <td><p><%= @hearing.date_of_hearing.to_date.strftime("%d-%m-%Y") %></p></td>
     </tr>
      <tr>
       <td><p><strong>Advocate:</strong><p></td>
@@ -59,11 +63,21 @@
     </tr>
      <tr>
       <td><p><strong>Case:</strong><p></td>
-      <td><p><%= @hearing.client_case.name %></p></td>
+      <td><p><%= @hearing.client_case.case_format %></p></td>
     </tr>
      <tr>
-      <td><p><strong>Amount:</strong><p></td>
-      <td><p><%= @hearing.amount %></p></td>
+      <td><p><strong>Amount to be paid:</strong><p></td>
+      <% amount_to_be_paid = 500 + @hearing.fees.pluck(:amount).inject(0){|sum,x| sum + x } %>
+      <td><p><%= amount_to_be_paid %></p></td>
+    </tr>
+      <tr>
+      <td><p><strong>Amount paid:</strong><p></td>
+      <% amount_paid = @hearing.payments.pluck(:amount).inject(0){|sum,x| sum + x } %>
+      <td><p><%= amount_paid %></p></td>
+    </tr>
+      <tr>
+      <td><p><strong>Balance:</strong><p></td>
+      <td><p><%= amount_to_be_paid - @hearing.payments.pluck(:amount).inject(0){|sum,x| sum + x } %></p></td>
     </tr>
   </tbody>
 </table>
@@ -83,18 +97,16 @@
         <tr>
           <th>No</th>
           <th>Amount Paid</th>
-          <th>Fee Paid Date</th>
           <th>Comments</th>
         </tr>
       </thead>
       <tbody>
-      <% @hearing.fees.each do |fee| %>
+      <% @hearing.payments.each_with_index do |payment, index| %>
         <tr>
-          <td>1</th>
-          <td> <%= fee.amount_paid %> </td>
-          <td> <%= fee.fee_paid_date.to_date %> </td>
-          <td> <%= fee.fee_comment %> </td>
-          <td> <%= link_to 'edit', edit_hearing_fee_path(@hearing, fee) %>
+          <td><%= index + 1 %> </th>
+          <td> <%= payment.amount %> </td>
+          <td> <%= payment.comment %> </td>
+          <td> <%= link_to edit_hearing_payment_path(@hearing, payment), class: "btn btn-info" do %>Edit<% end %>
         </tr>
         <% end %>
       </tbody>
@@ -104,6 +116,56 @@
 
 </div>
 
+<div class="row">
+<div class="col-md-6">
+<div class="hearing-details">
+<div class="row">
+<div class="col-md-6">
+      <h3> Fee Details  </h3>
+      </div>
+      <div class="col-md-6">
+       <%= link_to new_hearing_fee_path(@hearing, @payment), class: "btn btn-primary" do %>
+           <i class="glyphicon glyphicon-plus"> </i> Add New Fee
+        <% end %>
+      </div>
+</div>
+</div>
+</div>
+  
+</div>
+
+<div class="row">
+<div class="col-md-6">
+
+      
+      <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Amount Paid</th>
+          <th>Comments</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @hearing.fees.each_with_index do |fee, index| %>
+        <tr>
+          <td><%= index + 1 %> </th>
+          <td> <%= fee.amount %> </td>
+          <td> <%= fee.try(:comment) %> </td>
+          <td> <%= link_to edit_hearing_fee_path(@hearing, fee), class: "btn btn-info" do %>Edit<% end %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+
 <%#= link_to 'Add Fee', new_hearing_fee_path(@hearing, @fee) %>
 </div>
 </div>
+
+
+
+
+

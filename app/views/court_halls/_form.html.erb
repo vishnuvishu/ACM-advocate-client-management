@@ -18,8 +18,10 @@
   <div class="field">
     <%= f.label :court_complex_id %><br>
     <%= f.collection_select :court_complex_id, CourtComplex.all, :id, :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+  </div></br>
+
+    <div class="actions">
+    <%= f.submit "Create Court Hall", class: "btn btn-primary" do  %>
+      <i class="glyphicon glyphicon-plus"> </i> %> <% end %>
+    </div>
+<% end %> 

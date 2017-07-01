@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @to_do_list.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @to_do_list.description %>
+</p>
+
+<p>
+  <strong>List date:</strong>
+  <%= @to_do_list.list_date %>
+</p>
+
+<p>
+  <strong>Client case:</strong>
+  <%= @to_do_list.client_case_id %>
+</p>
+
+<p>
+  <strong>Advocate:</strong>
+  <%= @to_do_list.advocate_from %>
+</p>
+
+<%= link_to 'Edit', edit_to_do_list_path(@to_do_list) %> |
+<%= link_to 'Back', to_do_lists_path %>

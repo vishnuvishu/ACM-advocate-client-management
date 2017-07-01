@@ -12,7 +12,10 @@
   # GET /client_cases/1
   # GET /client_cases/1.json
   def show
-    @client = Client.find(params[:client_id])
+    @client = Client.find(params[:client_id]) if params[:client_id].present?
+    @advocate = Advocate.find(params[:advocate_id]) if params[:advocate_id].present?
+
+    
   end
  
   # GET /client_cases/new
@@ -75,6 +78,6 @@
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def client_case_params
-      params.require(:client_case).permit(:name, :client_id, :case_number, :case_type_id, :court_hall_id, :court_complex_id, :case_year, :advocate_id, :file_no, :state_id, :district_id, :case_status, :nature_of_case)
+      params.require(:client_case).permit(:name, :client_id, :case_number, :case_type_id, :court_hall, :court_complex_id, :case_year, :advocate_id, :file_no, :state_id, :district_id, :case_status, :nature_of_case, :advocate_for, :rank_of_party, :rank_of_opponent_party, :client_name, :opponent_name)
     end
 end

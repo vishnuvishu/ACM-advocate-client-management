@@ -22,8 +22,10 @@
   <div class="field">
     <%= f.label :district_id %><br>
     <%= f.collection_select :district_id, District.all, :id, :name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  </div></br>
+
+   <div class="actions">
+    <%= f.submit "Create Court Complex", class: "btn btn-primary" do  %>
+      <i class="glyphicon glyphicon-plus"> </i> %> <% end %>
+    </div>
 <% end %>

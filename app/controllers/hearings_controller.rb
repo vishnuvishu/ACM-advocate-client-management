@@ -27,12 +27,13 @@ class HearingsController < ApplicationController
   # POST /hearings
   # POST /hearings.json
   def create
-    @client_case = ClientCase.find(params[:client_case_id])
+    @client_case = ClientCase.find(params[:client_case_id]) if params[:client_case_id].present?
     @hearing = Hearing.new(hearing_params)
 
     respond_to do |format|
       if @hearing.save
-        format.html { redirect_to client_case_hearing_path(@client_case, @hearing), notice: 'Hearing was successfully created.' }
+        #format.html { redirect_to client_case_hearing_path(@client_case, @hearing), notice: 'Hearing was successfully created.' if params[:client_case_id].present?}
+        format.html { redirect_to home_index_path}
         format.json { render :show, status: :created, location: @hearing }
       else
         format.html { render :new }

@@ -74,6 +74,6 @@ class FeesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def fee_params
-      params.require(:fee).permit(:hearing_id, :amount_paid, :fee_paid_date, :fee_comment)
+      params.require(:fee).permit(:hearing_id, :amount, :comment)
     end
 end

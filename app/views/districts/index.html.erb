@@ -1,5 +1,4 @@
 <div class="container-fluid">
-<p id="notice"><%= notice %></p>
 
 <div class="main-heading">
 <div class="row">
@@ -31,9 +30,9 @@
       <tr>
         <td><%= district.name %></td>
         <td><%= district.state.name %></td>
-        <td><%= link_to district, class: "btn btn-success" do %>Show<% end %></td>
+        <!-- <td><%#= link_to district, class: "btn btn-success" do %>Show<%# end %></td> -->
         <td><%= link_to edit_district_path(district), class: "btn btn-info" do %>Edit<% end  %></td>
-        <td><%= link_to district, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>Delete <% end %></td>
+       <!--  <td><%#= link_to district, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>Delete <%# end %></td> -->
       </tr>
     <% end %>
   </tbody>

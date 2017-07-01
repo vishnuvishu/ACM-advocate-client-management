@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @notice_image.name %>
+</p>
+
+<p>
+  <strong>Cover:</strong>
+   <%= image_tag(@notice_image.notice_image, size:"25x25") %>
+</p>
+
+<p>
+  <strong>Notice:</strong>
+  <%= @notice_image.notice_id %>
+</p>
+
+<%= link_to 'Edit', edit_notice_image_path(@notice_image) %> |
+<%= link_to 'Back', notice_images_path %>

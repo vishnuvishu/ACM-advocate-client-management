@@ -10,12 +10,14 @@ class AdvocatesController < ApplicationController
   # GET /advocates/1
   # GET /advocates/1.json
   def show
+    # @client = Client.find(params[:client_id])
   end
 
   # GET /advocates/new
   def new
     @advocate = Advocate.new
   end
+
 
   # GET /advocates/1/edit
   def edit

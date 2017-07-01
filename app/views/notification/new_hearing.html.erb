@@ -1,0 +1,27 @@
+<p>Dear <%= @hearing.client_case.client.name %>,</p>
+
+<p>Thank you for choosing ACM for your case needs. </p>
+<p>We value your buisness.<p>
+<p>Please take a moment to go through the details below.</p>
+
+<p>You have a new hearing for the case <strong><%= @hearing.client_case.case_format %></strong> On <strong><%= @hearing.date_of_hearing.to_date.strftime("%d-%m-%Y") %></strong>
+
+<p><strong>Case Details</strong></p>
+
+<p>Name: <strong><%= @hearing.client_case.client.name %></strong></p>
+<p>Case: <strong><%= @hearing.client_case.case_format %></strong></p>
+<p>Date of hearing: <strong><%= @hearing.date_of_hearing.to_date.strftime("%d-%m-%Y") %></strong></p>
+<p>Court Complex: <strong><%= @hearing.client_case.court_complex.name %></strong></p>
+<p>Court Hall: <strong><%= @hearing.client_case.court_hall %></strong></p>
+<p>Advocate: <strong><%= @hearing.advocate.name %></strong></p>
+
+
+
+<p>For any further assistance call us at 26675877 or mail us at acm@gmail.com</p>
+
+
+<p> Best Regards</p>
+<p>Director</p>
+<p>Advocates Client Management</p>
+
+<img src="http://teamsigmato.com/acm/advocates-logo3.png" style="width:200px; width: 100px;">

@@ -35,8 +35,8 @@
           </div>
 
             <div class="field">
-            <%= f.label :court_hall_id %><br>
-            <%= f.collection_select :court_hall_id, CourtHall.all, :id, :name , prompt: "Select Court Hall"%>
+            <%= f.label :court_hall %><br>
+            <%= f.text_field :court_hall %>
           </div>
 
             <div class="field">
@@ -50,6 +50,21 @@
             <%= f.text_field :case_number %>
           </div>
 
+          <div class="field">
+              <%= f.label :case_year %><br>
+              <%= f.text_field :case_year %>
+            </div>
+
+             <div class="field">
+              <%= f.label :advocate_id %><br>
+              <%= f.collection_select :advocate_id, Advocate.all, :id, :name , prompt: "Select Advocate"%>
+            </div>
+
+            <div class="field">
+              <%= f.label :advocate_for %><br>
+              <%= f.select :advocate_for, %w{Plaintiff Petitioner Appellant Complainant DecreeHolder Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
+            </div>
+
 
     </div>
 
@@ -59,23 +74,28 @@
     <div class="col-md-3">
 
             <div class="field">
-              <%= f.label :case_year %><br>
-              <%= f.text_field :case_year %>
+              <%= f.label :rank_of_party %><br>
+              <%= f.select :rank_of_party, %w{Plaintiff Petitioner Appellant Complainant DecreeHolder} ,prompt: "Select " %>
             </div>
 
-            <div class="field">
-              <%= f.label :name %><br>
-              <%= f.text_field :name %>
+             <div class="field">
+              <%= f.label :client_name %><br>
+              <%= f.text_field :client_name %>
             </div>
 
-            <div class="field">
-              <%= f.label :advocate_id %><br>
-              <%= f.collection_select :advocate_id, Advocate.all, :id, :name , prompt: "Select Advocate"%>
+             <div class="field">
+              <%= f.label :rank_of_opponent_party %><br>
+              <%= f.select :rank_of_opponent_party, %w{Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
+            </div>
+
+             <div class="field">
+              <%= f.label :opponent_name %><br>
+              <%= f.text_field :opponent_name %>
             </div>
 
             <div class="field">
               <%= f.label :file_no %><br>
-              <%= f.text_field :file_no %>
+              <%= f.text_field :file_no, value: @client_case.generate_file_no,:readonly => true  %>
             </div>
 
             <div class="field">
@@ -87,6 +107,8 @@
               <%= f.label :nature_of_case %><br>
               <%= f.text_field :nature_of_case %>
             </div>
+
+          
 
             </br>
 

@@ -1,43 +1,92 @@
+
+
 <div class="container-fluid">
-  <p id="notice"><%= notice %></p>
+<div class="clients-show">
 
-
-
+<div class="row">
+  <div class="col-md-6">
+  <div class="client-information">
     <div class="row">
-        <div class="col-md-3">
+      <div class="col-md-6">
+      <h3>Advocate Information </h3>
+      </div>
+      <div class="col-md-6">
+      <%= link_to edit_advocate_path(@advocate), class: "btn btn-info" do %>Edit<% end %> 
+      </div>
+    </div>
+    </div>
+  </div>
+    <div class="col-md-6">
+  <div class="client-information">
+    <div class="row">
+      <div class="col-md-6">
+      <h3>Cases </h3>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
 
-        <div class="advocate-info">
+  <div class="row">
 
-            <h3> Basic Data </h3>
+      <div class="col-md-6">
+         
+              
+                <table class="table">
+                 
+                  <tbody>
+                    <tr>
+                      <td><p><strong>Name:</strong></p></td>
+                      <td><p><%= @advocate.name %></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Email:</strong></p></td>
+                      <td><p><%= @advocate.email %></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Mobile:</strong></p></td>
+                      <td><p><%= @advocate.mobile%></p></td>
+                    </tr>
+                     <tr>
+                      <td><p><strong>Roll no:</strong></p></td>
+                      <td><p><%= @advocate.roll_no %></p></td>
+                    </tr>
+                  
+                  </tbody>
+                </table>
 
-            <p><strong>Name:</strong><%= @advocate.name %></p>
-            <p><strong>Email:</strong><%= @advocate.email %></p>
-            <p><strong>Mobile:</strong><%= @advocate.mobile %></p>
-            <p><strong>Roll no:</strong><%= @advocate.roll_no %></p>
-
-            <%= link_to 'Edit', edit_advocate_path(@advocate) %> |
-            <%= link_to 'Back', advocates_path %>
-        </div>
+            
+            <%#= link_to 'Back', clients_path %>
+         
       </div>
 
-      <div class="col-md-3">
-      <div class="advocate-info">
-          <h3> My cases </h3>
+
+  <div class="col-md-6">
+    <div class="client-info">
+
 
           <% @advocate.client_cases.each do |client_case| %>
 
             <ul>
-              <li><%= link_to client_case.name, client_case_path(client_case) %></li>
+              <li><i class="fa fa-gavel" aria-hidden="true"></i> <%= link_to link_to client_case.case_format, advocate_client_case_path(@advocate, client_case) %></li>
             </ul>
 
           <% end %>
 
-      </div>
-      </div>
+          
+
 
 
     </div>
+  </div>
+
+ 
 
 
 </div>
 
+
+
+
+</div>
+</div>

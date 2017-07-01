@@ -1,6 +1,7 @@
 class Advocate < ActiveRecord::Base
 	has_many :client_cases
 	has_many :hearings
+	has_many :to_do_lists
 
 	validates_presence_of :name, :email, :mobile, :roll_no
 	validates_numericality_of :mobile

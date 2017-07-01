@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  notice_no: MyString
+  client_id: 1
+  opponent_name: MyString
+  opponent_address: MyText
+  date_of_notice: 2017-06-24
+
+two:
+  notice_no: MyString
+  client_id: 1
+  opponent_name: MyString
+  opponent_address: MyText
+  date_of_notice: 2017-06-24

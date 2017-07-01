@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  hearing_id: 1
+  amount: 1
+  comment: MyText
+
+two:
+  hearing_id: 1
+  amount: 1
+  comment: MyText
