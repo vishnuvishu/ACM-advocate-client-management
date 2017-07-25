@@ -35,7 +35,7 @@
 <div class="home-page" id= "reload">
 <table class="table table-bordered" id="main-table">
 
-  <thead>
+ <thead>
     <tr>
       <th><h5 data-toggle="tooltip" title="Previous Advocate">Prev Adv</h5></th>
       <th><h5 data-toggle="tooltip" title="Previous Date">Prev Date</h5></th>
@@ -57,86 +57,111 @@
   <% @hearings.each do |hearing| %>
 
       <tr>
-        <td >
-          <%#= if hearing.client_case.hearings[-3] != nil
 
-          hearing.client_case.hearings[-3].try(:advocate).try(:name) 
-          end %>
-           <% client_hearings = hearing.client_case.hearings %> 
-           <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+        <td>
 
-            <% if client_hearings.count == 1 %>
+       <!--  Previous Advocate -->
+
+          <% client_hearings = hearing.client_case.hearings %> 
+          <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+
+          <% if client_hearings.count == 1 %>
               -
-          <% else %>
-            <%= next_hearings[0].advocate_id %>
+            <% else %>
+            <%= next_hearings[0].advocate.name %>
           <% end %>
-        <td >
-          <%#= if hearing.client_case.hearings[-3] != nil
-          hearing.client_case.hearings[-3].try(:date_of_hearing).strftime("%Y-%m-%d") 
-          end %>
 
+        </td>
+
+
+       <!--  Previous Date -->
+
+        <td>
           <%= hearing.client_case.hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
         </td>
-      
 
+
+        <!-- File Number -->
+      
         <td>
           <%= hearing.client_case.file_no %>
         </td>
 
+        <!-- Case Details  -->
+
         <td>
-         <%= link_to hearing.client_case.case_format, client_client_case_path(hearing.client_case.client, hearing.client_case) %>
+          <%= link_to hearing.client_case.case_format, client_client_case_path(hearing.client_case.client, hearing.client_case) %>
         </td>
+
+
+        <!-- Current Position Stage -->
 
         <td>
           <%= link_to hearing.case_status, client_case_hearing_path(hearing.client_case, hearing) %>
         </td>
 
-        <td >
-          <%= link_to hearing.advocate.name, advocate_path(hearing.advocate) %>
+
+        <!-- Advocate Appearing -->
+
+        <td>
+       
+          <% client_hearings = hearing.client_case.hearings %>
+          <%= link_to client_hearings.last.advocate.name, advocate_path(hearing.advocate) %>
         </td>
+
+
+        <!-- Client Fee Due -->
 
         <td>
           <%= hearing.amount %>
         </td>
 
 
+        <!-- Next Stage -->
 
         <td>
           <% client_hearings = hearing.client_case.hearings %> 
-           <% next_hearings =  client_hearings.where('date_of_hearing >= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+          <% next_hearings =  client_hearings.where('date_of_hearing >= ?', hearing.date_of_hearing).order('date_of_hearing') %>
           <% if client_hearings.count == 1 %>
               -
-          <% else %>
-            <%= next_hearings[1].case_status %> 
-          <% end %>
+            <% else %>
+              <%= next_hearings[1].case_status %> 
+            <% end %>
         </td> 
-          
-      
+
+
+
+        <!-- Next Date -->
 
         <td>
-        <% if client_hearings.count == 1 %>
+          <% if client_hearings.count == 1 %>
               -
-          <% else %>
-          <%= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
-          <% end %>
+            <% else %>
+              <%= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
+            <% end %>
         </td>
 
+
+        <!-- Hearing Fee Pending -->
+
         <td>
-         <% if client_hearings.count == 1 %>
+          <% if client_hearings.count == 1 %>
               -
-          <% else %>
-         <%= hearing.amount %>
-          <% end %>
+            <% else %>
+              <%= hearing.amount %>
+            <% end %>
         </td>
 
-        <td>
 
+        <!-- To Do List -->
+
+        <td>
          <%= link_to "Add To Do", new_to_do_list_path(@to_do_list, :client_case => hearing.client_case_id) %>
-
         </td>
   </tr>
   <% end %>
   </tbody>
+
 
 
 </table>

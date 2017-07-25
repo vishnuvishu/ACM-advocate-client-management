@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-	#before_action :authenticate_user!
+	before_action :authenticate_user!
   def index
   	@hearings = Hearing.where("date_of_hearing = ?", Date.today.to_time)
   	#@hearings = Hearing.all
