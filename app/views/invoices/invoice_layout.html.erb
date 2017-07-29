@@ -13,8 +13,8 @@
                         <tr>
                             <td>
                                 Invoice No: <%= @invoice.invoice_number %><br>
-                                Bill Date: <%= @invoice.bill_date %><br>
-                                Due Date: <%= @invoice.due_date %>
+                                Bill Date: <%= @invoice.bill_date.strftime("%Y-%m-%d") %><br>
+                                Due Date: <%= @invoice.due_date.strftime("%Y-%m-%d") %>
 
                             </td>
 
@@ -35,7 +35,7 @@
                                 <strong>K.R.Pradeep Associates</strong><br>
                                 # 31/9, "NCP Tower", 1st Floor, <br>
                                 1st Main, Mount Joy Extension,<br>
-                                Hanumanthanagar (Behind BMS Engg. College Hostel)<br>
+                                Hanumanthanagar<br>
                                 Bengaluru - 560019
 
 

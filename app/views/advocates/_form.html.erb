@@ -1,3 +1,6 @@
+<div class="row">
+<div class="col-md-6">
+
 <%= form_for(@advocate) do |f| %>
   <% if @advocate.errors.any? %>
     <div id="error_explanation">
@@ -11,24 +14,131 @@
     </div>
   <% end %>
 
-  <div class="field">
+
+<div class="form-styling">
+<div class="row mb">
+  <div class="col-md-2">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :mobile %><br>
-    <%= f.text_field :mobile %>
-  </div>
-  <div class="field">
-    <%= f.label :roll_no %><br>
-    <%= f.text_field :roll_no %>
   </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="col-md-5">
+    <%= f.text_field :name %>
   </div>
-<% end %>
+  <span id="advocateNameError"></span>
+</div>
+
+
+<div class="row mb">
+  <div class="col-md-2">
+    <%= f.label :email %><br>
+  </div>
+
+  <div class="col-md-5">
+    <%= f.text_field :email %>
+  </div>
+  <span id="advocateEmailError"></span>
+</div>
+
+
+<div class="row mb">
+  <div class="col-md-2">
+    <%= f.label :mobile %><br>
+  </div>
+
+  <div class="col-md-5">
+    <%= f.text_field :mobile %>
+  </div>
+  <span id="advocatePhoneError"></span>
+</div>
+
+
+<div class="row mb">
+  <div class="col-md-2">
+    <%= f.label :roll_no %><br>
+  </div>
+
+  <div class="col-md-5">
+    <%= f.text_field :roll_no %>
+  </div>
+  <span id="advocateRollError"></span>
+</div>
+
+ </div> 
+
+ <div class="row mb">
+<div class="col-md-2 col-md-offset-5">
+    <div class="actions">
+      <%= f.submit "Submit", class: "btn btn-success" %>
+    </div>
+    <% end %>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>  
+
+
+
+<script>
+
+  
+  var advocateNameHandle = document.getElementById('advocate_name');
+  var advocateEmailHandle = document.getElementById('advocate_email');
+  var advocateMobileHandle = document.getElementById('advocate_mobile');
+  var advocateRollNoHandle = document.getElementById('advocate_roll_no');
+
+  var advocateNameErrorHandle = document.getElementById('advocateNameError');
+  var advocateEmailErrorHandle = document.getElementById('advocateEmailError');
+  var advocateMobileErrorHandle = document.getElementById('advocatePhoneError');
+  var advocateRollNoErrorHandle = document.getElementById('advocateRollError');
+
+  advocateNameHandle.onblur = function(){
+    if(advocateNameHandle.value.length == ""){
+      advocateNameErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      advocateNameErrorHandle.innerHTML = "";
+    }
+  }
+
+  advocateEmailHandle.onblur = function(){
+    if(advocateEmailHandle.value.length == ""){
+      advocateEmailErrorHandle.innerHTML = "cant be blank";
+    }
+    else if(!validateEmail(advocateEmailHandle.value)){
+      advocateEmailErrorHandle.innerHTML = "invalid email format";
+    }
+    else{
+      advocateEmailErrorHandle.innerHTML = "";
+    }
+  }
+
+  advocateMobileHandle.onblur = function(){
+    if(advocateMobileHandle.value.length == ""){
+      advocateMobileErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      advocateMobileErrorHandle.innerHTML = "";
+    }
+  }
+
+   advocateRollNoHandle.onblur = function(){
+    if(advocateRollNoHandle.value.length == ""){
+      advocateRollNoErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      advocateRollNoErrorHandle.innerHTML = "";
+    }
+  }
+
+  function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+  }
+
+
+  </script>
+   
+    

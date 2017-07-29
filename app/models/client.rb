@@ -10,5 +10,7 @@ class Client < ActiveRecord::Base
 	validates_presence_of :name, :address, :pincode, :email, :primary_mobile
 	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
 	validates :primary_mobile, length: { is: 10 }
+	validates :pincode, length: { is: 6 }
+	validates_uniqueness_of :primary_mobile, :email
 
 end

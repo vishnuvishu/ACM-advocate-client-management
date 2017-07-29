@@ -29,9 +29,10 @@ class FeesController < ApplicationController
   def create
     @fee = Fee.new(fee_params)
     @hearing = Hearing.find(params[:hearing_id])
+    @client_case = @hearing.client_case
     respond_to do |format|
       if @fee.save
-        format.html { redirect_to hearing_fee_path(@hearing, @fee), notice: 'Fee was successfully created.' }
+        format.html { redirect_to client_case_hearing_path(@client_case, @hearing), notice: 'Fee was successfully created.' }
         format.json { render :show, status: :created, location: @fee }
       else
         format.html { render :new }
@@ -44,9 +45,10 @@ class FeesController < ApplicationController
   # PATCH/PUT /fees/1.json
   def update
      @hearing = Hearing.find(params[:hearing_id])
+     @client_case = @hearing.client_case
     respond_to do |format|
       if @fee.update(fee_params)
-        format.html { redirect_to hearing_fee_path(@hearing, @fee), notice: 'Fee was successfully updated.' }
+        format.html { redirect_to client_case_hearing_path(@client_case, @hearing), notice: 'Fee was successfully updated.' }
         format.json { render :show, status: :ok, location: @fee }
       else
         format.html { render :edit }

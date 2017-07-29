@@ -11,59 +11,84 @@
     </div>
   <% end %>
 
-
+<div class="form-styling">
 <div class="client-cases-new">
   <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-4">
 
           <%= f.hidden_field :client_id, value: @client.id %>
 
-           <div class="field">
-            <%= f.label :state_id %><br>
-            <%= f.collection_select :state_id, State.all, :id, :name, prompt: "Select State" %>
-           </div>
-
-          <div class="field">
-            <%= f.label :district_id %><br>
-            <%= f.collection_select :district_id, District.all, :id, :name, prompt: "Select District" %>
+         <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :state_id %>
           </div>
 
-            <div class="field">
-            <%= f.label :court_complex_id %><br>
-            <%= f.collection_select :court_complex_id, CourtComplex.all, :id, :name , prompt: "Select Court Complex"%>
+          <div class="col-md-9">
+             <%= f.collection_select :state_id, State.all, :id, :name, prompt: "Select State" %>
+          </div>
+        </div>
+
+         <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :district_id %>
           </div>
 
-            <div class="field">
-            <%= f.label :court_hall %><br>
-            <%= f.text_field :court_hall %>
+          <div class="col-md-9">
+             <%= f.collection_select :district_id, District.all, :id, :name, prompt: "Select District" %>
+          </div>
+        </div>
+
+          <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :court_complex_id %>
           </div>
 
-            <div class="field">
-            <%= f.label :case_type_id %><br>
-            <%= f.collection_select :case_type_id, CaseType.all, :id, :name, prompt: "Select Case Type" %>
+          <div class="col-md-9">
+              <%= f.collection_select :court_complex_id, CourtComplex.all, :id, :name , prompt: "Select Court Complex"%>
+          </div>
+        </div>
 
+
+
+         <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :court_hall %>
           </div>
 
-           <div class="field">
-            <%= f.label :case_number %><br>
-            <%= f.text_field :case_number %>
+          <div class="col-md-9">
+              <%= f.text_field :court_hall %><br>
+              <span id="courtHallError"></span>
+          </div>
+          
+        </div>
+
+
+
+         <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :case_type_id %>
           </div>
 
-          <div class="field">
-              <%= f.label :case_year %><br>
-              <%= f.text_field :case_year %>
-            </div>
+          <div class="col-md-9">
+              <%= f.collection_select :case_type_id, CaseType.all, :id, :name, prompt: "Select Case Type" %>
+          </div>
+        </div>
 
-             <div class="field">
-              <%= f.label :advocate_id %><br>
-              <%= f.collection_select :advocate_id, Advocate.all, :id, :name , prompt: "Select Advocate"%>
-            </div>
 
-            <div class="field">
-              <%= f.label :advocate_for %><br>
-              <%= f.select :advocate_for, %w{Plaintiff Petitioner Appellant Complainant DecreeHolder Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
-            </div>
+
+
+         <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :case_number %>
+          </div>
+
+          <div class="col-md-9">
+              <%= f.text_field :case_number %><br>
+              <span id="caseNumberError"></span>
+          </div>
+          
+        </div>
 
 
     </div>
@@ -71,57 +96,168 @@
 
 
 
-    <div class="col-md-3">
+    <div class="col-md-4">
 
-            <div class="field">
-              <%= f.label :rank_of_party %><br>
+
+         <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :case_year %>
+          </div>
+
+          <div class="col-md-9">
+              <%= f.text_field :case_year %><br>
+              <span id="caseYearError"></span>
+          </div>
+          
+        </div>
+
+
+
+          <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :advocate_id %>
+          </div>
+
+          <div class="col-md-9">
+              <%= f.collection_select :advocate_id, Advocate.all, :id, :name , prompt: "Select Advocate"%>
+          </div>
+        </div>
+
+
+
+         <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :advocate_for %>
+          </div>
+
+          <div class="col-md-9">
+              <%= f.select :advocate_for, %w{Plaintiff Petitioner Appellant Complainant DecreeHolder Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
+          </div>
+        </div>
+
+
+
+
+
+         <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :rank_of_party %>
+          </div>
+
+          <div class="col-md-9">
               <%= f.select :rank_of_party, %w{Plaintiff Petitioner Appellant Complainant DecreeHolder} ,prompt: "Select " %>
-            </div>
+          </div>
+        </div>
 
-             <div class="field">
-              <%= f.label :client_name %><br>
-              <%= f.text_field :client_name %>
-            </div>
 
-             <div class="field">
-              <%= f.label :rank_of_opponent_party %><br>
-              <%= f.select :rank_of_opponent_party, %w{Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
-            </div>
 
-             <div class="field">
-              <%= f.label :opponent_name %><br>
-              <%= f.text_field :opponent_name %>
-            </div>
 
-            <div class="field">
-              <%= f.label :file_no %><br>
-              <%= f.text_field :file_no, value: @client_case.generate_file_no,:readonly => true  %>
-            </div>
+  <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :client_name %>
+          </div>
 
-            <div class="field">
-              <%= f.label :case_status %><br>
-              <%= f.select :case_status, %w{Running Closed NOC} ,prompt: "Select " %>
-            </div>
+          <div class="col-md-9">
+           <%= f.text_field :client_name %><br>
+           <span id="clientNameError"></span>
+          </div>
+          
+        </div>
 
-            <div class="field">
-              <%= f.label :nature_of_case %><br>
-              <%= f.text_field :nature_of_case %>
-            </div>
+
+
+
+  <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :rank_of_opponent_party %>
+          </div>
+
+          <div class="col-md-9">
+          <%= f.select :rank_of_opponent_party, %w{Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
+          </div>
+        </div>
+
+           
+
+
+        
+            
+
+    </div>
+
+    <div class="col-md-4">
+
+      <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :opponent_name %>
+          </div>
+
+          <div class="col-md-9">
+         <%= f.text_field :opponent_name %><br>
+         <span id="opponentNameError"></span>
+          </div>
+          
+        </div>
+
+
+
+              <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :file_no %>
+          </div>
+
+          <div class="col-md-9">
+         <%= f.text_field :file_no, value: @client_case.generate_file_no,:readonly => true  %>
+          </div>
+        </div>
+
+
+
+              <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :case_status %>
+          </div>
+
+          <div class="col-md-9">
+         <%= f.select :case_status, %w{Running Closed NOC} ,prompt: "Select " %>
+          </div>
+        </div>
+
+
+
+               <div class="row mb">
+          <div class="col-md-3">
+            <%= f.label :nature_of_case %>
+          </div>
+
+          <div class="col-md-9">
+            <%= f.text_field :nature_of_case %><br>
+            <span id="natureOfCaseError"></span>
+          </div>
+          
+        </div>
+
 
           
 
-            </br>
+        
+          
 
-            <div class="actions"> 
-              <%= f.submit class: "btn btn-primary" %>
+
+          <div class="row mb">
+            <div class="col-md-7 col-md-offset-5">
+                <div class="actions">
+                  <%= f.submit "Create Case", class: "btn btn-success" %>
+                </div>
+                <% end %>
             </div>
-          <% end %>
+            </div>
 
     </div>
 
   </div>
 
-  
+ </div> 
 
   
    
@@ -173,6 +309,76 @@
     }
     request.send();
   };
+
+
+  var courtHallHandle = document.getElementById('client_case_court_hall');
+  var caseNumberHandle = document.getElementById('client_case_case_number');
+  var caseYearHandle = document.getElementById('client_case_case_year');
+  var clientNameHandle = document.getElementById('client_case_client_name');
+  var opponentNameHandle = document.getElementById('client_case_opponent_name');
+  var natureOfCaseHandle = document.getElementById('client_case_nature_of_case');
+
+  var courtHallErrorHandle = document.getElementById('courtHallError');
+  var caseNumberErrorHandle = document.getElementById('caseNumberError');
+  var caseYearErrorHandle = document.getElementById('caseYearError');
+  var clientNameErrorHandle = document.getElementById('clientNameError');
+  var opponentNameErrorHandle = document.getElementById('opponentNameError');
+  var natureOfCaseErrorHandle = document.getElementById('natureOfCaseError');
+
+
+   courtHallHandle.onblur = function(){
+    if(courtHallHandle.value.length == ""){
+      courtHallErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      courtHallErrorHandle.innerHTML = "";
+    }
+  }
+
+   caseNumberHandle.onblur = function(){
+    if(caseNumberHandle.value.length == ""){
+      caseNumberErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      caseNumberErrorHandle.innerHTML = "";
+    }
+  }
+
+    caseYearHandle.onblur = function(){
+    if(caseYearHandle.value.length == ""){
+      caseYearErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      caseYearErrorHandle.innerHTML = "";
+    }
+  }
+
+    clientNameHandle.onblur = function(){
+    if(clientNameHandle.value.length == ""){
+      clientNameErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      clientNameErrorHandle.innerHTML = "";
+    }
+  }
+
+    opponentNameHandle.onblur = function(){
+    if(opponentNameHandle.value.length == ""){
+      opponentNameErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      opponentNameErrorHandle.innerHTML = "";
+    }
+  }
+
+    natureOfCaseHandle.onblur = function(){
+    if(natureOfCaseHandle.value.length == ""){
+      natureOfCaseErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      natureOfCaseErrorHandle.innerHTML = "";
+    }
+  }
 
 
 </script> 

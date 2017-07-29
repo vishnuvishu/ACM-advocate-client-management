@@ -31,7 +31,7 @@ class PaymentsController < ApplicationController
     @hearing = Hearing.find(params[:hearing_id])
     #binding.pry
     @payment = Payment.new(payment_params)
-  
+    @client_case = @hearing.client_case
     respond_to do |format|
       if @payment.save
         format.html { redirect_to client_case_hearing_path(@client_case, @hearing), notice: 'Payment was successfully created.' }
@@ -47,9 +47,11 @@ class PaymentsController < ApplicationController
   # PATCH/PUT /payments/1.json
   def update
     @hearing = Hearing.find(params[:hearing_id])
+    @payment = Payment.new(payment_params)
+    @client_case = @hearing.client_case
     respond_to do |format|
       if @payment.update(payment_params)
-        format.html { redirect_to hearing_payment_path(@hearing, @payment), notice: 'Payment was successfully updated.' }
+        format.html { redirect_to client_case_hearing_path(@client_case, @hearing), notice: 'Payment was successfully updated.' }
         format.json { render :show, status: :ok, location: @payment }
       else
         format.html { render :edit }

@@ -2,7 +2,7 @@
 
 <div class="client-cases-show">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-6">
         <h2><strong>Case : </strong><%= @client_case.case_format %></h2>
     </div>
   </div>
@@ -71,45 +71,6 @@
       <td><p><%= @client_case.court_hall %></p></td>
     </tr>
 
-    <!--  <tr>
-      <td><p><strong>Court complex:</strong></p></td>
-      <td><p><%= @client_case.court_complex.try(:name) %></p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>Case year:</strong></p></td>
-      <td><p><%= @client_case.case_year %></p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>Advocate:</strong></p></td>
-      <td><p><%#= @client_case.advocate.name %></p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>File no:</strong></p></td>
-      <td><p><%= @client_case.file_no %></p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>State:</strong></p></td>
-      <td><p><%#= @client_case.state.name %></p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>District:</strong></p></td>
-      <td><p><%= @client_case.district_id %></p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>Case status:</strong></p></td>
-      <td><p><%= @client_case.case_status %></p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>Nature of case:</strong></p></td>
-      <td><p><%= @client_case.nature_of_case   %></p></td>
-    </tr> -->
 
 
     <tr>
@@ -117,7 +78,7 @@
         <td><p><%= @client_case.case_format %></p></td>
     </tr>
     
-  </tbody>
+  </tbody> 
 </table>
 
     </div>
@@ -132,8 +93,17 @@
       <td><p><strong>Amount to be paid:</strong></p></td>
       <% amount_to_be_paid = 0 %>
       <td><p>
-        <% amount_to_be_paid = @client_case.hearings.pluck(:amount).inject(0){|sum,x| sum + x } %>
-        <%= amount_to_be_paid %>
+    
+
+        <% hearing_amount = @client_case.hearings.pluck(:amount).inject(0){|sum,x| sum + x } %>
+        <% hearing_fee_amount = 0 %>
+        <% @client_case.hearings.each do |hearing| %>
+          <% hearing.fees.each do |fee| %>
+            <% hearing_fee_amount = hearing_fee_amount + fee.amount  %>
+          <% end %>
+        <% end %>
+        <% total_to_be_paid = hearing_fee_amount + hearing_amount %>
+        <%= total_to_be_paid %>
       </p></td>
     </tr>
 
@@ -150,7 +120,7 @@
 
      <tr>
       <td><p><strong>Balance:</strong></p></td>
-      <td><p><%= amount_to_be_paid - total_amount_paid %></p></td>
+      <td><p><%= total_to_be_paid - total_amount_paid %></p></td>
     </tr>
 
     
@@ -194,20 +164,6 @@
   </div>
 
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 <%#= link_to 'Edit', edit_client_client_case_path(@client, @client_case) %> 
 <%#= link_to 'Back', client_cases_path %><br/>

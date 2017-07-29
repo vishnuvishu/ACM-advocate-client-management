@@ -3,129 +3,137 @@
 
 <table class="table table-bordered" id="main-table">
 
-  <thead>
-    <tr>
-      <th><h5 data-toggle="tooltip" title="Previous Advocate">Prev Adv</h5></th>
-      <th><h5 data-toggle="tooltip" title="Previous Date">Prev Date</h5></th>
-      <th><h5 data-toggle="tooltip" title="File Number">File No</h5></th>
-      <th><h5 data-toggle="tooltip" title="Case Details">Case Details</h5></th>
-      <th><h5 data-toggle="tooltip" title="Current Position Stage">Current Position Stage</h5></th>
-      <th><h5 data-toggle="tooltip" title="Advocate Appearing">Adv App</h5></th>
-      <th><h5 data-toggle="tooltip" title="Client Fee Due">CFD</h5></th>
-      <th><h5 data-toggle="tooltip" title="Next Stage">Next Stage</h5></th>
-      <th><h5 data-toggle="modal" data-target="#myModal">Next Date</h5></th>
-      <th><h5 data-toggle="tooltip" title="Hearing Fee Pending">HFP</h5></th>
-      <th><h5 data-toggle="tooltip" title="To Do List">To Do List</h5></th> 
-    </tr>
-  </thead>
+   <thead>
+      <tr>
+        <th><h5 data-toggle="tooltip" title="Previous Advocate">Prev Adv</h5></th>
+        <th><h5 data-toggle="tooltip" title="Previous Date">Prev Date</h5></th>
+        <th><h5 data-toggle="tooltip" title="File Number">File No</h5></th>
+        <th><h5 data-toggle="tooltip" title="Case Details">Case Details</h5></th>
+        <th><h5 data-toggle="tooltip" title="Current Position Stage">Current Position Stage</h5></th>
+        <th><h5 data-toggle="tooltip" title="Advocate Appearing">Adv App</h5></th>
+        <th><h5 data-toggle="tooltip" title="Client Fee Due">CFD</h5></th>
+        <th><h5 data-toggle="tooltip" title="Next Stage">Next Stage</h5></th>
+        <th><h5 data-toggle="modal" data-target="#myModal">Next Date</h5></th>
+        <th><h5 data-toggle="tooltip" title="To Do List">To Do List</h5></th> 
+      </tr>
+    </thead>
 
-  <tbody>
+    <tbody>
             
 
   <% @hearings.each do |hearing| %>
-
       <tr>
 
+        <!--  Previous Advocate -->
         <td>
-
-       <!--  Previous Advocate -->
-
           <% client_hearings = hearing.client_case.hearings %> 
           <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
-
           <% if client_hearings.count == 1 %>
-            
-            <% else %>
+              -
+          <% else %>
             <%= next_hearings[0].advocate.name %>
           <% end %>
-
         </td>
 
 
-       <!--  Previous Date -->
-
+        <!--  Previous Date -->
         <td>
-          <%= hearing.client_case.hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
+          <% client_hearings = hearing.client_case.hearings %> 
+          <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+          <% if client_hearings.count == 1 %>
+              -
+          <% else %>
+           <%= hearing.client_case.hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
+          <% end %>
         </td>
 
 
         <!-- File Number -->
-      
         <td>
           <%= hearing.client_case.file_no %>
         </td>
 
-        <!-- Case Details  -->
 
+
+        <!-- Case Details  -->
         <td>
           <%= link_to hearing.client_case.case_format, client_client_case_path(hearing.client_case.client, hearing.client_case) %>
         </td>
 
 
         <!-- Current Position Stage -->
-
         <td>
           <%= link_to hearing.case_status, client_case_hearing_path(hearing.client_case, hearing) %>
         </td>
 
 
         <!-- Advocate Appearing -->
-
         <td>
-       
           <% client_hearings = hearing.client_case.hearings %>
           <%= link_to client_hearings.last.advocate.name, advocate_path(hearing.advocate) %>
         </td>
 
 
         <!-- Client Fee Due -->
-
         <td>
-          <%= hearing.amount %>
+          <% all_hearing_fee_amount = 0 %>
+          <% all_hearing_amount = 0  %>
+          <% amount_paid = 0 %>
+        
+          <% hearing.client_case.client.client_cases.each do |client_case| %>
+            <% client_case.hearings.each do |hearing| %>
+              <% hearing.fees.each do |fee| %>
+                  <% all_hearing_fee_amount = all_hearing_fee_amount + fee.amount %>
+              <% end %>
+            <% end %>
+          <% end %> 
+
+          <% hearing.client_case.client.client_cases.each do |client_case| %>
+            <% all_hearing_amount = all_hearing_amount + client_case.hearings.pluck(:amount).inject(0){|sum,x| sum + x } %>
+          <% end %>
+
+          <% hearing.client_case.client.client_cases.each do |client_case| %>
+            <% client_case.hearings.each do |hearing| %>
+              <% hearing.payments.each do |payment| %>
+                <% amount_paid = amount_paid + payment.amount  %>
+              <% end %>
+            <% end %>
+          <% end %> 
+
+          <% total_cfd = (all_hearing_fee_amount + all_hearing_amount) - amount_paid %>
+          <%= total_cfd %>
+
         </td>
 
 
         <!-- Next Stage -->
-
         <td>
           <% client_hearings = hearing.client_case.hearings %> 
           <% next_hearings =  client_hearings.where('date_of_hearing >= ?', hearing.date_of_hearing).order('date_of_hearing') %>
           <% if client_hearings.count == 1 %>
               -
-            <% else %>
-              <%= next_hearings[1].case_status %> 
-            <% end %>
+          <% else %>
+              <%#= next_hearings[1].case_status %> 
+          <% end %>
         </td> 
 
 
 
         <!-- Next Date -->
-
         <td>
           <% if client_hearings.count == 1 %>
               -
-            <% else %>
-              <%= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
-            <% end %>
+          <% else %>
+            <%#= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
+          <% end %>
         </td>
-
-
-        <!-- Hearing Fee Pending -->
-
-        <td>
-          <% if client_hearings.count == 1 %>
-              -
-            <% else %>
-              <%= hearing.amount %>
-            <% end %>
-        </td>
-
 
         <!-- To Do List -->
-
         <td>
          <%= link_to "Add To Do", new_to_do_list_path(@to_do_list, :client_case => hearing.client_case_id) %>
         </td>
+
+        
   </tr>
   <% end %>
   </tbody>
@@ -191,20 +199,7 @@
                       });
                     } );
                   </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-          
+   
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

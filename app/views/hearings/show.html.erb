@@ -67,7 +67,7 @@
     </tr>
      <tr>
       <td><p><strong>Amount to be paid:</strong><p></td>
-      <% amount_to_be_paid = 500 + @hearing.fees.pluck(:amount).inject(0){|sum,x| sum + x } %>
+      <% amount_to_be_paid = @hearing.amount + @hearing.fees.pluck(:amount).inject(0){|sum,x| sum + x } %>
       <td><p><%= amount_to_be_paid %></p></td>
     </tr>
       <tr>
@@ -77,7 +77,7 @@
     </tr>
       <tr>
       <td><p><strong>Balance:</strong><p></td>
-      <td><p><%= amount_to_be_paid - @hearing.payments.pluck(:amount).inject(0){|sum,x| sum + x } %></p></td>
+      <td><p><%= amount_to_be_paid - amount_paid %></p></td>
     </tr>
   </tbody>
 </table>

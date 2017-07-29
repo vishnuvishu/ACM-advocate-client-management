@@ -1,3 +1,6 @@
+<div class="row">
+<div class="col-md-4">
+
 <%= nested_form_for(@client) do |f| %>
   <% if @client.errors.any? %>
     <div id="error_explanation">
@@ -11,47 +14,176 @@
     </div>
   <% end %>
 
-<div class="main-heading-body">
-  <div class="field">
-    <%= f.label :primary_mobile %><br>
-    <%= f.text_field :primary_mobile %>
+  <div class="form-styling">
 
-    <%= f.fields_for :all_mobiles, @all_mobile do |task_form| %>
-      <%= task_form.text_field :mobile %>
-      <%= task_form.link_to_remove "Delete" %>
-    <% end %>
 
-    <p><%= f.link_to_add "Add", :all_mobiles %></p>
-      
-  </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-    
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_area :address %>
-    
-  </div>
-  <div class="field">
-    <%= f.label :pincode %><br>
-    <%= f.text_field :pincode %>
- 
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-   
-  </div>
-  </br>
-    
-  <div class="actions">
-    <%= f.submit "Create New Client" , class: "btn btn-primary",  id: "submit" %>
-  </div>
-<% end %>
+      <div class="row mb">
+          <div class="col-md-4">
+            <%= f.label :primary_mobile %>
+          </div>
+
+          <div class="col-md-8">
+            <%= f.text_field :primary_mobile %>
+            <span id="primaryMobileError"></span>
+          </div>
+
+     <!-- <p><%#= f.link_to_add "Add", :all_mobiles , id: "add-mobile" %></p>
+
+    <%#= f.fields_for :all_mobiles, @all_mobile do |task_form| %>
+      <%#= task_form.text_field :mobile %>
+      <%#= task_form.link_to_remove "Delete" %>
+    <%# end %> -->
+          
+        </div>
+
+        <div class="row mb">
+          <div class="col-md-4">
+            <%= f.label :name %>
+          </div>
+
+          <div class="col-md-8">
+            <%= f.text_field :name %>
+            <span id="nameError"></span>
+          </div>
+          
+        </div>
+
+
+         <div class="row mb">
+          <div class="col-md-4">
+            <%= f.label :address %>
+          </div>
+
+          <div class="col-md-8">
+            <%= f.text_field :address %><br>
+            <span id="addressError"></span>
+          </div>
+          
+        </div>
+
+
+            <div class="row mb">
+          <div class="col-md-4">
+            <%= f.label :pincode %>
+          </div>
+
+          <div class="col-md-8">
+            <%= f.text_field :pincode %><br>
+            <span id="pincodeError"></span>
+          </div>
+          
+        </div>
+
+
+
+
+            <div class="row mb">
+          <div class="col-md-4">
+            <%= f.label :email %>
+          </div>
+
+          <div class="col-md-8">
+            <%= f.text_field :email %><br>
+            <span id="emailError"></span>
+          </div>
+          
+        </div>
 
 
 </div>
 
+ 
+    
+  <div class="row mb">
+<div class="col-md-7 col-md-offset-5">
+    <div class="actions">
+      <%= f.submit "Create New Client", class: "btn btn-success" %>
+    </div>
+    <% end %>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+<script>
+
+
+  var primaryMobileHandle = document.getElementById('client_primary_mobile');
+  var nameHandle = document.getElementById('client_name');
+  var addressHandle = document.getElementById('client_address');
+  var pincodeHandle = document.getElementById('client_pincode');
+  var emailHandle = document.getElementById('client_email');
+
+  var primaryMobileErrorHandle = document.getElementById('primaryMobileError');
+  var nameErrorHandle = document.getElementById('nameError');
+  var addressErrorHandle = document.getElementById('addressError');
+  var pincodeErrorHandle = document.getElementById('pincodeError');
+  var emailErrorHandle = document.getElementById('emailError');
+
+
+   primaryMobileHandle.onblur = function(){
+    if(primaryMobileHandle.value.length == ""){
+      primaryMobileErrorHandle.innerHTML = "can't be blank";
+    }
+    else if(!primaryMobileHandle.value != 10 ){
+      primaryMobileErrorHandle.innerHTML = "mobile number should be 10 digits";
+    }
+    else{
+      primaryMobileErrorHandle.innerHTML = "";
+    }
+  }
+
+   nameHandle.onblur = function(){
+    if(nameHandle.value.length == ""){
+      nameErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      nameErrorHandle.innerHTML = "";
+    }
+  }
+
+   addressHandle.onblur = function(){
+    if(addressHandle.value.length == ""){
+      addressErrorHandle.innerHTML = "can't be blank";
+    }
+    else{
+      addressErrorHandle.innerHTML = "";
+    }
+  }
+
+   pincodeHandle.onblur = function(){
+    if(pincodeHandle.value.length == ""){
+      pincodeErrorHandle.innerHTML = "can't be blank";
+    }
+
+    else if(pincodeHandle.value != 6 ){
+      pincodeErrorHandle.innerHTML = "pincode should be 6 digits";
+    }
+
+    else{
+      pincodeErrorHandle.innerHTML = "";
+    }
+  }
+
+   emailHandle.onblur = function(){
+    if(emailHandle.value.length == ""){
+      emailErrorHandle.innerHTML = "can't be blank";
+    }
+     else if(!validateEmail(emailHandle.value)){
+      emailErrorHandle.innerHTML = "invalid email format";
+    }
+    else{
+      emailErrorHandle.innerHTML = "";
+    }
+  }
+
+    function validateEmail(email) {
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(email);
+  }
+
+</script>
