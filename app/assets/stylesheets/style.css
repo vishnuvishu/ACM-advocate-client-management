@@ -588,6 +588,36 @@ a.navbar-brand img{
 
     
 
+/* front page modal */
+
+.modal-styling .mb{
+    margin-bottom: 15px;
+}
+
+.modal-styling input{
+    width:100%;
+    height: 30px;
+}
+
+.modal-styling select{
+    width: 100%;
+    height: 30px;
+}
+
+.modal-styling textarea{
+    width: 100%;
+     border: 1px solid #ada6a6;
+}
+
+.modal-content{
+    border-radius: 0px !important;
+    background: #cec9c9 !important;
+}
+
+h4.modal-title{
+    font-size: 22px;
+    color: #100d0d;
+}
 
 
  
