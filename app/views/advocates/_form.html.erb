@@ -1,89 +1,85 @@
 <div class="row">
-<div class="col-md-6">
+  <div class="col-md-6">
 
-<%= form_for(@advocate) do |f| %>
-  <% if @advocate.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@advocate.errors.count, "error") %> prohibited this advocate from being saved:</h2>
+    <%= form_for(@advocate) do |f| %>
+      <% if @advocate.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@advocate.errors.count, "error") %> prohibited this advocate from being saved:</h2>
 
-      <ul>
-      <% @advocate.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @advocate.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
 
 
-<div class="form-styling">
-<div class="row mb">
-  <div class="col-md-2">
-    <%= f.label :name %><br>
+    <div class="form-styling">
+
+      <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :name %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.text_field :name %>
+        </div>
+        <span id="advocateNameError"></span>
+      </div>
+
+
+      <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :email %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.text_field :email %>
+        </div>
+        <span id="advocateEmailError"></span>
+      </div>
+
+
+      <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :mobile %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.text_field :mobile %>
+        </div>
+        <span id="advocatePhoneError"></span>
+      </div>
+
+
+      <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :roll_no %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.text_field :roll_no %>
+        </div>
+        <span id="advocateRollError"></span>
+      </div>
+
+    </div> 
+
+      <div class="row mb">
+        <div class="col-md-2 col-md-offset-5">
+            <div class="actions">
+              <%= f.submit "Submit", class: "btn btn-success" %>
+            </div>
+            <% end %>
+        </div>
+      </div>
+
   </div>
-
-  <div class="col-md-5">
-    <%= f.text_field :name %>
-  </div>
-  <span id="advocateNameError"></span>
 </div>
-
-
-<div class="row mb">
-  <div class="col-md-2">
-    <%= f.label :email %><br>
-  </div>
-
-  <div class="col-md-5">
-    <%= f.text_field :email %>
-  </div>
-  <span id="advocateEmailError"></span>
-</div>
-
-
-<div class="row mb">
-  <div class="col-md-2">
-    <%= f.label :mobile %><br>
-  </div>
-
-  <div class="col-md-5">
-    <%= f.text_field :mobile %>
-  </div>
-  <span id="advocatePhoneError"></span>
-</div>
-
-
-<div class="row mb">
-  <div class="col-md-2">
-    <%= f.label :roll_no %><br>
-  </div>
-
-  <div class="col-md-5">
-    <%= f.text_field :roll_no %>
-  </div>
-  <span id="advocateRollError"></span>
-</div>
-
- </div> 
-
- <div class="row mb">
-<div class="col-md-2 col-md-offset-5">
-    <div class="actions">
-      <%= f.submit "Submit", class: "btn btn-success" %>
-    </div>
-    <% end %>
-</div>
-</div>
-
-</div>
-
-</div>
-</div>  
-
-
-
+ 
 <script>
 
-  
   var advocateNameHandle = document.getElementById('advocate_name');
   var advocateEmailHandle = document.getElementById('advocate_email');
   var advocateMobileHandle = document.getElementById('advocate_mobile');
@@ -137,7 +133,6 @@
       var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
       return re.test(email);
   }
-
 
   </script>
    

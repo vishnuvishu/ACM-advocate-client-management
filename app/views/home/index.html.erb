@@ -8,7 +8,7 @@
       }
     })
    })
- </script>
+</script>
 
 <div class="container-fluid">
 
@@ -54,7 +54,7 @@
         <td>
           <% client_hearings = hearing.client_case.hearings %> 
           <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
-          <% if client_hearings.count == 1 %>
+          <% if client_hearings.count == 1 || hearing.date_of_hearing.to_date == Date.today %>
               -
           <% else %>
             <%= next_hearings[0].advocate.name %>
@@ -65,11 +65,18 @@
         <!--  Previous Date -->
         <td>
           <% client_hearings = hearing.client_case.hearings %> 
-          <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
-          <% if client_hearings.count == 1 %>
+          <% minus_hearing = hearing.id - 1 %>
+          <%# next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+          <% if client_hearings.count == 1 || hearing.date_of_hearing.to_date == Date.today %>
               -
+          <% elsif hearing.id = minus_hearing %>
+
+            <%#= hearing.date_of_hearing.strftime("%Y-%m-%d") %>
+
+
           <% else %>
-           <%= hearing.client_case.hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
+         
+           <%#= client_hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
           <% end %>
         </td>
 
@@ -96,7 +103,7 @@
         <!-- Advocate Appearing -->
         <td>
           <% client_hearings = hearing.client_case.hearings %>
-          <%= link_to client_hearings.last.advocate.name, advocate_path(hearing.advocate) %>
+          <%= link_to hearing.advocate.name, advocate_path(hearing.advocate) %>
         </td>
 
 
@@ -184,81 +191,78 @@
         </div>
         <div class="modal-body">
          
-                <%= form_for([Hearing.new]) do |f| %>
-                
-                <div class="modal-styling">
+            <%= form_for([Hearing.new]) do |f| %>
+            
+            <div class="modal-styling">
 
-                    <div class="row mb"> 
-                      <div class="col-md-3">
-                      <%= f.label :date_of_hearing %>
-                      </div>
-                      <div class="col-md-6">
-                      <%= f.text_field :date_of_hearing %>
-                      <span id="dateOfHearingError"></span>
-                      </div>
-                    </div>
+                <div class="row mb"> 
+                  <div class="col-md-3">
+                  <%= f.label :date_of_hearing %>
+                  </div>
+                  <div class="col-md-6">
+                  <%= f.text_field :date_of_hearing %>
+                  <span id="dateOfHearingError"></span>
+                  </div>
+                </div>
 
-                     <div class="row mb">
-                      <div class="col-md-3">
-                      <%= f.label :advocate_id %>
-                      </div>
-                      <div class="col-md-6">
-                       <%= f.collection_select :advocate_id, Advocate.all, :id , :name, prompt: "Select Advocate" %>
-                      </div>
-                    </div>
+                <div class="row mb">
+                  <div class="col-md-3">
+                  <%= f.label :advocate_id %>
+                  </div>
+                  <div class="col-md-6">
+                   <%= f.collection_select :advocate_id, Advocate.all, :id , :name, prompt: "Select Advocate" %>
+                  </div>
+                </div>
 
-                     <div class="row mb">
-                      <div class="col-md-3">
-                      <%= f.label :case_status %>
-                      </div>
-                      <div class="col-md-6">
-                       <%= f.text_area :case_status %>
-                       <span id="caseStatusError"></span>
-                      </div>
-                    </div>
+                <div class="row mb">
+                  <div class="col-md-3">
+                  <%= f.label :case_status %>
+                  </div>
+                  <div class="col-md-6">
+                   <%= f.text_area :case_status %>
+                   <span id="caseStatusError"></span>
+                  </div>
+                </div>
 
-                    <div class="row mb">
-                      <div class="col-md-3">
-                      <%= f.label :client_case_id %>
-                      </div>
-                      <div class="col-md-6">
-                       <%= f.collection_select :client_case_id, ClientCase.all, :id, :case_format, prompt: "Select Case" %>
-                      </div>
-                    </div>
+                <div class="row mb">
+                  <div class="col-md-3">
+                  <%= f.label :client_case_id %>
+                  </div>
+                  <div class="col-md-6">
+                   <%= f.collection_select :client_case_id, ClientCase.all, :id, :case_format, prompt: "Select Case" %>
+                  </div>
+                </div>
 
-                     <div class="row mb">
-                      <div class="col-md-3">
-                      <%= f.label :amount %>
-                      </div>
-                      <div class="col-md-6">
-                       <%= f.text_field :amount , :value => 500 %>
-                      </div>
-                    </div>
+                <div class="row mb">
+                  <div class="col-md-3">
+                  <%= f.label :amount %>
+                  </div>
+                  <div class="col-md-6">
+                   <%= f.text_field :amount , :value => 500 %>
+                  </div>
+                </div>
 
-                    </div>
+            </div>
 
+            <div class="row mb">
+              <div class="col-md-6 col-md-offset-3">
+                <div class="actions">
+                  <%= f.submit "Submit", class: "btn btn-success", id: "submit" , data: { disable_with: "Please wait..."} %>
+                </div>
+                  <% end %>
+              </div>
+            </div>
 
-                      <div class="row mb">
-                      <div class="col-md-6 col-md-offset-3">
-                          <div class="actions">
-                            <%= f.submit "Submit", class: "btn btn-success", id: "submit" , data: { disable_with: "Please wait..."} %>
-                          </div>
-                          <% end %>
-                      </div>
-                      </div>
-
-
-
-                 <script>
-                    $( function() {
-                      $( "#hearing_date_of_hearing" ).datepicker({
-                        dateFormat: 'yy-mm-dd',
-                        // minDate: 0,
-                        changeMonth: true,
-                        changeYear: true
-                      });
-                    } );
-                  </script>
+           <script>
+              $( function() {
+                $( "#hearing_date_of_hearing" ).datepicker({
+                  dateFormat: 'yy-mm-dd',
+                  // minDate: 0,
+                  changeMonth: true,
+                  changeYear: true
+                });
+              } );
+            </script>
 
         </div>
         <div class="modal-footer">
@@ -271,43 +275,41 @@
   
 
 
-<script>
+    <script>
 
-$(document).ready(function(){
-    $('#main-table').DataTable();
-});
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip(); 
-});
-
-
-  var dateOfHearingHandle = document.getElementById('hearing_date_of_hearing');
-  var caseStatusHandle = document.getElementById('hearing_case_status');
-
-  var dateOfHearingErrorHandle = document.getElementById('dateOfHearingError');
-  var caseStatusErrorHandle = document.getElementById('caseStatusError');
-
-   dateOfHearingHandle.onblur = function(){
-    if(dateOfHearingHandle.value.length == ""){
-      dateOfHearingErrorHandle.innerHTML = "can't be blank";
-    }
-    else{
-      dateOfHearingErrorHandle.innerHTML = "";
-    }
-  }
-
-  caseStatusHandle.onblur = function(){
-    if(caseStatusHandle.value.length == ""){
-      caseStatusErrorHandle.innerHTML = "can't be blank";
-    }
-    else{
-      caseStatusErrorHandle.innerHTML = "";
-    }
-  }
+    $(document).ready(function(){
+        $('#main-table').DataTable();
+    });
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
 
 
+      var dateOfHearingHandle = document.getElementById('hearing_date_of_hearing');
+      var caseStatusHandle = document.getElementById('hearing_case_status');
 
-</script>
+      var dateOfHearingErrorHandle = document.getElementById('dateOfHearingError');
+      var caseStatusErrorHandle = document.getElementById('caseStatusError');
+
+       dateOfHearingHandle.onblur = function(){
+        if(dateOfHearingHandle.value.length == ""){
+          dateOfHearingErrorHandle.innerHTML = "can't be blank";
+        }
+        else{
+          dateOfHearingErrorHandle.innerHTML = "";
+        }
+      }
+
+      caseStatusHandle.onblur = function(){
+        if(caseStatusHandle.value.length == ""){
+          caseStatusErrorHandle.innerHTML = "can't be blank";
+        }
+        else{
+          caseStatusErrorHandle.innerHTML = "";
+        }
+      }
+
+    </script>
 
 
 

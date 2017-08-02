@@ -1,85 +1,78 @@
 <div class="row">
-<div class="col-md-4">
+  <div class="col-md-4">
 
-<%= form_for([@client_case, @hearing]) do |f| %>
-  <% if @hearing.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@hearing.errors.count, "error") %> prohibited this hearing from being saved:</h2>
-
-      <ul>
-      <% @hearing.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= form_for([@client_case, @hearing]) do |f| %>
+      <% if @hearing.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@hearing.errors.count, "error") %> prohibited this hearing from being saved:</h2>
+          <ul>
+            <% @hearing.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
   <% end %>
 
    <div class="form-styling">
 
     <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :date_of_hearing %>
-          </div>
+      <div class="col-md-4">
+        <%= f.label :date_of_hearing %>
+      </div>
 
-          <div class="col-md-8">
-            <%= f.text_field :date_of_hearing %>
-            <span id="nameError"></span>
-          </div>
-          
-        </div>
+      <div class="col-md-8">
+        <%= f.text_field :date_of_hearing %>
+        <span id="nameError"></span>
+      </div> 
+    </div>
 
-          <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :advocate_id %>
-          </div>
+    <div class="row mb">
+      <div class="col-md-4">
+        <%= f.label :advocate_id %>
+      </div>
 
-          <div class="col-md-8">
-            <%= f.collection_select :advocate_id, Advocate.all, :id , :name , prompt: "Select Advocate"%>
-            <span id="nameError"></span>
-          </div>
-          
-        </div>
+      <div class="col-md-8">
+        <%= f.collection_select :advocate_id, Advocate.all, :id , :name , prompt: "Select Advocate"%>
+        <span id="nameError"></span>
+      </div>
+    </div>
 
-          <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :case_status %>
-          </div>
+    <div class="row mb">
+      <div class="col-md-4">
+        <%= f.label :case_status %>
+      </div>
 
-          <div class="col-md-8">
-           <%= f.text_area :case_status %>
-            <span id="nameError"></span>
-          </div>
-          
-        </div>
+      <div class="col-md-8">
+       <%= f.text_area :case_status %>
+        <span id="nameError"></span>
+      </div>
+    </div>
 
-        <%= f.hidden_field :client_case_id, value: @client_case.id %> 
+    <%= f.hidden_field :client_case_id, value: @client_case.id %> 
 
-          <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :amount %>
-          </div>
+    <div class="row mb">
+      <div class="col-md-4">
+        <%= f.label :amount %>
+      </div>
 
-          <div class="col-md-8">
-            <%= f.text_field :amount , :value => 500 %>
-            <span id="nameError"></span>
-          </div>
-          
-        </div>
+      <div class="col-md-8">
+        <%= f.text_field :amount , :value => 500 %>
+        <span id="nameError"></span>
+      </div>
+    </div>
 
-        </div>
+   </div>
 
   <div class="row mb">
-<div class="col-md-8 col-md-offset-4">
-    <div class="actions">
-      <%= f.submit "Create New Hearing", class: "btn btn-success" %>
+    <div class="col-md-8 col-md-offset-4">
+      <div class="actions">
+        <%= f.submit "Create New Hearing", class: "btn btn-success" %>
+      </div>
+      <% end %>
     </div>
-    <% end %>
-</div>
-</div>
+  </div>
 
-
-
-</div>
+  </div>
 </div>
 
  <script>

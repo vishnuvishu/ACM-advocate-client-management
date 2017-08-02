@@ -29,9 +29,7 @@
     <% @states.each do |state| %>
       <tr>
         <td><%= state.name %></td>
-        <!-- <td><%#= link_to state, class: "btn btn-success" do %>Show<%# end %></td> -->
         <td><%= link_to edit_state_path(state), class: "btn btn-info" do %>Edit<% end %></td>
-       <!--  <td><%#= link_to state, method: :delete, data: { confirm: 'Are you sure?' },class: "btn btn-danger" do %>Delete <%# end %></td> -->
       </tr>
     <% end %>
   </tbody>

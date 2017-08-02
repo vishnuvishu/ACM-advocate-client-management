@@ -88,7 +88,7 @@ CaseType.create(name: "SPL.C(SVC) - SVC CASES")
 
 State.create(name: "Karnataka")
 
-District.create(name: "BAGALKOT", state_id: 1)
+District.create(name: "BAGALKOT", state_id: 1) 
 District.create(name: "BALLARI", state_id: 1)
 District.create(name: "BELAGAVI", state_id: 1)
 District.create(name: "BENGALURU", state_id: 1)
@@ -119,8 +119,6 @@ District.create(name: "UTTARA KANNADA", state_id: 1)
 District.create(name: "VIJAYAPURA", state_id: 1)
 District.create(name: "YADGIR", state_id: 1)
 
-
-# court complexes
 
 
 CourtComplex.create(name: "Court Complex-Bilagi", state_id: 1, district_id: 1)
@@ -192,4 +190,146 @@ CourtComplex.create(name: "Court Complex-Hiriyur", state_id: 1, district_id: 10)
 CourtComplex.create(name: "Court Complex-Hosadurga", state_id: 1, district_id: 10)
 CourtComplex.create(name: "Court Complex-Molakalmuru", state_id: 1, district_id: 10)
 CourtComplex.create(name: "District Court Complex-Chitradurga", state_id: 1, district_id: 10)
+
+CourtComplex.create(name: "Court Complex-Sullia", state_id: 1, district_id: 11)
+CourtComplex.create(name: "Court Complex- Bantwal", state_id: 1, district_id: 11)
+CourtComplex.create(name: "Court Complex-Belthanagady", state_id: 1, district_id: 11)
+CourtComplex.create(name: "Court Complex-Puttur", state_id: 1, district_id: 11)
+CourtComplex.create(name: "District Court Complex-Dakshina Kannada", state_id: 1, district_id: 11)
+CourtComplex.create(name: "Court complex - Mudbidri", state_id: 1, district_id: 11)
+
+CourtComplex.create(name: "Court Complex-Honnali", state_id: 1, district_id: 12)
+CourtComplex.create(name: "Court Complex- Channagiri", state_id: 1, district_id: 12)
+CourtComplex.create(name: "Court Complex- Harapanahalli", state_id: 1, district_id: 12)
+CourtComplex.create(name: "Court Complex- Harihara", state_id: 1, district_id: 12)
+CourtComplex.create(name: "Court Complex- Jagalur", state_id: 1, district_id: 12)
+CourtComplex.create(name: "District Court Complex-Davanagere", state_id: 1, district_id: 12)
+
+CourtComplex.create(name: "Court Complex-Hubli", state_id: 1, district_id: 13)
+CourtComplex.create(name: "Court Complex- Kalaghatgi", state_id: 1, district_id: 13)
+CourtComplex.create(name: "Court Complex- Kundgol", state_id: 1, district_id: 13)
+CourtComplex.create(name: "Court Complex- Navalgund", state_id: 1, district_id: 13)
+CourtComplex.create(name: "District Court Complex-Dharwad", state_id: 1, district_id: 13)
+CourtComplex.create(name: "City Court Complex-Dharawd", state_id: 1, district_id: 13)
+
+CourtComplex.create(name: "Court Complex-Lakshmeshwar", state_id: 1, district_id: 14)
+CourtComplex.create(name: "Court Complex-Ron", state_id: 1, district_id: 14)
+CourtComplex.create(name: "Court Complex- Nargund", state_id: 1, district_id: 14)
+CourtComplex.create(name: "District Court Complex-Gadag", state_id: 1, district_id: 14)
+
+CourtComplex.create(name: "Court Complex-Alur", state_id: 1, district_id: 15)
+CourtComplex.create(name: "Court Complex-Arakalagudu", state_id: 1, district_id: 15)
+CourtComplex.create(name: "Court Complex-Arasikere", state_id: 1, district_id: 15)
+CourtComplex.create(name: "Court Complex-Belur", state_id: 1, district_id: 15)
+CourtComplex.create(name: "Court Complex-Channarayapatna", state_id: 1, district_id: 15)
+CourtComplex.create(name: "Court Complex-Holenarasipura", state_id: 1, district_id: 15)
+CourtComplex.create(name: "Court Complex- Sakaleshpur", state_id: 1, district_id: 15)
+CourtComplex.create(name: "District Court Complex-Hassan", state_id: 1, district_id: 15)
+
+CourtComplex.create(name: "Court Complex- Byadgi", state_id: 1, district_id: 16)
+CourtComplex.create(name: "Court Complex- Hanagal", state_id: 1, district_id: 16)
+CourtComplex.create(name: "Court Complex- Hirekerur", state_id: 1, district_id: 16)
+CourtComplex.create(name: "Court Complex- Ranebennur", state_id: 1, district_id: 16)
+CourtComplex.create(name: "Court Complex- Savanur", state_id: 1, district_id: 16)
+CourtComplex.create(name: "Court Complex- Shiggaon", state_id: 1, district_id: 16)
+CourtComplex.create(name: "District Court Complex-Haveri", state_id: 1, district_id: 16)
+
+CourtComplex.create(name: "Court Complex-Aland", state_id: 1, district_id: 17)
+CourtComplex.create(name: "Court Complex-Chincholi", state_id: 1, district_id: 17)
+CourtComplex.create(name: "Court Complex-Chittapur", state_id: 1, district_id: 17)
+CourtComplex.create(name: "Court Complex-Sedam", state_id: 1, district_id: 17)
+CourtComplex.create(name: "Court Complex-Jevargi", state_id: 1, district_id: 17)
+CourtComplex.create(name: "Court Complex- Afzalpur", state_id: 1, district_id: 17)
+CourtComplex.create(name: "District Court Complex-Kalaburagi", state_id: 1, district_id: 17)
+
+CourtComplex.create(name: "Court Complex- Somwarpet", state_id: 1, district_id: 18)
+CourtComplex.create(name: "Court Complex- Virajpet", state_id: 1, district_id: 18)
+CourtComplex.create(name: "District Court Complex-Kodagu", state_id: 1, district_id: 18)
+
+CourtComplex.create(name: "Court Complex-Bangarpet", state_id: 1, district_id: 19)
+CourtComplex.create(name: "Court Complex-Malur", state_id: 1, district_id: 19)
+CourtComplex.create(name: "Court Complex-Mulbagal", state_id: 1, district_id: 19)
+CourtComplex.create(name: "Court Complex-Srinivaspur", state_id: 1, district_id: 19)
+CourtComplex.create(name: "Court Complex-KGF", state_id: 1, district_id: 19)
+CourtComplex.create(name: "District Court Complex-Kolar", state_id: 1, district_id: 19)
+
+CourtComplex.create(name: "Court Complex-Gangavathi", state_id: 1, district_id: 20)
+CourtComplex.create(name: "Court Complex-Kushtagi", state_id: 1, district_id: 20)
+CourtComplex.create(name: "Court Complex-Yelbarga", state_id: 1, district_id: 20)
+CourtComplex.create(name: "District Court Complex-Koppal", state_id: 1, district_id: 20)
+
+CourtComplex.create(name: "Court Complex-Malavalli", state_id: 1, district_id: 21)
+CourtComplex.create(name: "Court Complex-Pandavapura", state_id: 1, district_id: 21)
+CourtComplex.create(name: "Court Complex- Krishnarajapet", state_id: 1, district_id: 21)
+CourtComplex.create(name: "Court Complex- Maddur", state_id: 1, district_id: 21)
+CourtComplex.create(name: "Court Complex- Nagamangala", state_id: 1, district_id: 21)
+CourtComplex.create(name: "Court Complex- Srirangapatna", state_id: 1, district_id: 21)
+CourtComplex.create(name: "District Court Complex-Mandya", state_id: 1, district_id: 21)
+
+CourtComplex.create(name: "Court Complex- Heggadadevankote", state_id: 1, district_id: 22)
+CourtComplex.create(name: "Court Complex- Hunsur", state_id: 1, district_id: 22)
+CourtComplex.create(name: "Court Complex- KrishnarajaNagar", state_id: 1, district_id: 22)
+CourtComplex.create(name: "Court Complex- Nanjangud", state_id: 1, district_id: 22)
+CourtComplex.create(name: "Court Complex- Periyapatna", state_id: 1, district_id: 22)
+CourtComplex.create(name: "Court Complex- T.Narasipura", state_id: 1, district_id: 22)
+CourtComplex.create(name: "Double Road Court Complex, Mysuru", state_id: 1, district_id: 22)
+CourtComplex.create(name: "Law Court Complex, Mysuru", state_id: 1, district_id: 22)
+CourtComplex.create(name: "ADR COURT COMPLEX, MYSURU", state_id: 1, district_id: 22)
+
+CourtComplex.create(name: "Court Complex-Devadurga", state_id: 1, district_id: 23)
+CourtComplex.create(name: "Court Complex-Lingasugur", state_id: 1, district_id: 23)
+CourtComplex.create(name: "Court Complex-Manvi", state_id: 1, district_id: 23)
+CourtComplex.create(name: "Court Complex-Sindhanur", state_id: 1, district_id: 23)
+CourtComplex.create(name: "District Court Complex-Raichur", state_id: 1, district_id: 23)
+
+CourtComplex.create(name: "Court Complex- Chennapatna", state_id: 1, district_id: 24)
+CourtComplex.create(name: "Court Complex- Kanakapura", state_id: 1, district_id: 24)
+CourtComplex.create(name: "Court Complex- Magadi", state_id: 1, district_id: 24)
+CourtComplex.create(name: "District Court Complex-Ramanagar", state_id: 1, district_id: 24)
+
+CourtComplex.create(name: "Court Complex-Bhadravati", state_id: 1, district_id: 25)
+CourtComplex.create(name: "Court Complex-Hosanagar", state_id: 1, district_id: 25)
+CourtComplex.create(name: "Court Complex-Sagar", state_id: 1, district_id: 25)
+CourtComplex.create(name: "Court Complex- Shikaripura", state_id: 1, district_id: 25)
+CourtComplex.create(name: "Court Complex- Sorab", state_id: 1, district_id: 25)
+CourtComplex.create(name: "Court Complex- Thirthahalli", state_id: 1, district_id: 25)
+CourtComplex.create(name: "District Court Complex-Shimoga", state_id: 1, district_id: 25)
+
+CourtComplex.create(name: "Court Complex- C.N.Halli", state_id: 1, district_id: 26)
+CourtComplex.create(name: "Court Complex- Gubbi", state_id: 1, district_id: 26)
+CourtComplex.create(name: "Court Complex- Koratagere", state_id: 1, district_id: 26)
+CourtComplex.create(name: "Court Complex- Kunigal", state_id: 1, district_id: 26)
+CourtComplex.create(name: "Court Complex- Pavagada", state_id: 1, district_id: 26)
+CourtComplex.create(name: "Court Complex- Sira", state_id: 1, district_id: 26)
+CourtComplex.create(name: "Court Complex- Turuvekere", state_id: 1, district_id: 26)
+CourtComplex.create(name: "District Court Complex-Tumakuru", state_id: 1, district_id: 26)
+
+CourtComplex.create(name: "Court Complex- Karkala", state_id: 1, district_id: 27)
+CourtComplex.create(name: "Court Complex- Kundapur", state_id: 1, district_id: 27)
+CourtComplex.create(name: "District Court Complex-Udupi", state_id: 1, district_id: 27)
+
+CourtComplex.create(name: "Court Complex- Ankola", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Bhatkal", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Dandeli", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Haliyal", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Honnavar", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Kumta", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Mundgod", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Siddapur", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Sirsi", state_id: 1, district_id: 28)
+CourtComplex.create(name: "Court Complex- Yellapur", state_id: 1, district_id: 28)
+CourtComplex.create(name: "District Court Complex-Karwar", state_id: 1, district_id: 28)
+CourtComplex.create(name: "JMFC Court Complex-Karwar", state_id: 1, district_id: 28)
+
+CourtComplex.create(name: "Court Complex- Indi", state_id: 1, district_id: 29)
+CourtComplex.create(name: "Court Complex- Sindagi", state_id: 1, district_id: 29)
+CourtComplex.create(name: "District Court Complex-Vijayapur", state_id: 1, district_id: 29)
+
+CourtComplex.create(name: "Court Complex-Shahapur", state_id: 1, district_id: 30)
+CourtComplex.create(name: "Court Complex-Yadgir", state_id: 1, district_id: 30)
+
+
+
+
+
 

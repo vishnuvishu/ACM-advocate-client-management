@@ -82,15 +82,6 @@ ActiveRecord::Schema.define(version: 20170701071111) do
     t.datetime "updated_at",       null: false
   end
 
-  create_table "defendants", force: :cascade do |t|
-    t.string   "name"
-    t.string   "roll_no"
-    t.string   "practicing_at"
-    t.integer  "client_case_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-  end
-
   create_table "districts", force: :cascade do |t|
     t.string   "name"
     t.integer  "state_id"

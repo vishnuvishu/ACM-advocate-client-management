@@ -9,18 +9,18 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+<% end %>
 
 <div class="form-styling">
-<div class="client-cases-new">
-  <div class="row">
+  <div class="client-cases-new">
+    <div class="row">
 
-    <div class="col-md-4">
+      <div class="col-md-4">
 
-          <%= f.hidden_field :client_id, value: @client.id %>
+        <%= f.hidden_field :client_id, value: @client.id %>
 
-         <div class="row mb">
-          <div class="col-md-3">
+        <div class="row mb">
+          <div class="col-md-3">  
             <%= f.label :state_id %>
           </div>
 
@@ -29,7 +29,7 @@
           </div>
         </div>
 
-         <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :district_id %>
           </div>
@@ -39,7 +39,7 @@
           </div>
         </div>
 
-          <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :court_complex_id %>
           </div>
@@ -49,9 +49,7 @@
           </div>
         </div>
 
-
-
-         <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :court_hall %>
           </div>
@@ -60,12 +58,9 @@
               <%= f.text_field :court_hall %><br>
               <span id="courtHallError"></span>
           </div>
-          
         </div>
 
-
-
-         <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :case_type_id %>
           </div>
@@ -75,10 +70,7 @@
           </div>
         </div>
 
-
-
-
-         <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :case_number %>
           </div>
@@ -87,19 +79,16 @@
               <%= f.text_field :case_number %><br>
               <span id="caseNumberError"></span>
           </div>
-          
         </div>
 
-
-    </div>
+      </div>
 
 
 
 
     <div class="col-md-4">
 
-
-         <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :case_year %>
           </div>
@@ -108,12 +97,9 @@
               <%= f.text_field :case_year %><br>
               <span id="caseYearError"></span>
           </div>
-          
         </div>
 
-
-
-          <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :advocate_id %>
           </div>
@@ -123,23 +109,17 @@
           </div>
         </div>
 
-
-
-         <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :advocate_for %>
           </div>
 
           <div class="col-md-9">
-              <%= f.select :advocate_for, %w{Plaintiff Petitioner Appellant Complainant DecreeHolder Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
+            <%= f.select :advocate_for, %w{Plaintiff Petitioner Appellant Complainant DecreeHolder Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
           </div>
         </div>
 
-
-
-
-
-         <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :rank_of_party %>
           </div>
@@ -150,9 +130,7 @@
         </div>
 
 
-
-
-  <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :client_name %>
           </div>
@@ -161,13 +139,9 @@
            <%= f.text_field :client_name %><br>
            <span id="clientNameError"></span>
           </div>
-          
         </div>
 
-
-
-
-  <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :rank_of_opponent_party %>
           </div>
@@ -175,19 +149,13 @@
           <div class="col-md-9">
           <%= f.select :rank_of_opponent_party, %w{Defendent Respondent Judgement Debtor Accused} ,prompt: "Select " %>
           </div>
-        </div>
-
-           
-
-
-        
-            
+        </div>       
 
     </div>
 
     <div class="col-md-4">
 
-      <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :opponent_name %>
           </div>
@@ -196,12 +164,9 @@
          <%= f.text_field :opponent_name %><br>
          <span id="opponentNameError"></span>
           </div>
-          
         </div>
 
-
-
-              <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :file_no %>
           </div>
@@ -211,9 +176,7 @@
           </div>
         </div>
 
-
-
-              <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :case_status %>
           </div>
@@ -223,9 +186,7 @@
           </div>
         </div>
 
-
-
-               <div class="row mb">
+        <div class="row mb">
           <div class="col-md-3">
             <%= f.label :nature_of_case %>
           </div>
@@ -234,24 +195,16 @@
             <%= f.text_field :nature_of_case %><br>
             <span id="natureOfCaseError"></span>
           </div>
-          
         </div>
 
-
-          
-
-        
-          
-
-
-          <div class="row mb">
-            <div class="col-md-7 col-md-offset-5">
-                <div class="actions">
-                  <%= f.submit "Create Case", class: "btn btn-success" %>
-                </div>
-                <% end %>
+        <div class="row mb">
+          <div class="col-md-7 col-md-offset-5">
+            <div class="actions">
+                <%= f.submit "Create Case", class: "btn btn-success" %>
             </div>
-            </div>
+            <% end %>
+          </div>
+        </div>
 
     </div>
 
@@ -259,10 +212,6 @@
 
  </div> 
 
-  
-   
- 
-  
 </div>
 
 <script>
@@ -325,7 +274,6 @@
   var opponentNameErrorHandle = document.getElementById('opponentNameError');
   var natureOfCaseErrorHandle = document.getElementById('natureOfCaseError');
 
-
    courtHallHandle.onblur = function(){
     if(courtHallHandle.value.length == ""){
       courtHallErrorHandle.innerHTML = "can't be blank";
@@ -379,7 +327,6 @@
       natureOfCaseErrorHandle.innerHTML = "";
     }
   }
-
 
 </script> 
 

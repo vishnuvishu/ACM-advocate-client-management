@@ -1,34 +1,35 @@
 <div class="container-fluid">
-<div class="home-page" id= "reload">
+  <div class="home-page" id= "reload">
 
-<table class="table table-bordered" id="main-table">
+    <table class="table table-bordered" id="main-table">
 
-   <thead>
-      <tr>
-        <th><h5 data-toggle="tooltip" title="Previous Advocate">Prev Adv</h5></th>
-        <th><h5 data-toggle="tooltip" title="Previous Date">Prev Date</h5></th>
-        <th><h5 data-toggle="tooltip" title="File Number">File No</h5></th>
-        <th><h5 data-toggle="tooltip" title="Case Details">Case Details</h5></th>
-        <th><h5 data-toggle="tooltip" title="Current Position Stage">Current Position Stage</h5></th>
-        <th><h5 data-toggle="tooltip" title="Advocate Appearing">Adv App</h5></th>
-        <th><h5 data-toggle="tooltip" title="Client Fee Due">CFD</h5></th>
-        <th><h5 data-toggle="tooltip" title="Next Stage">Next Stage</h5></th>
-        <th><h5 data-toggle="modal" data-target="#myModal">Next Date</h5></th>
-        <th><h5 data-toggle="tooltip" title="To Do List">To Do List</h5></th> 
-      </tr>
-    </thead>
+       <thead>
+          <tr>
+            <th><h5 data-toggle="tooltip" title="Previous Advocate">Prev Adv</h5></th>
+            <th><h5 data-toggle="tooltip" title="Previous Date">Prev Date</h5></th>
+            <th><h5 data-toggle="tooltip" title="File Number">File No</h5></th>
+            <th><h5 data-toggle="tooltip" title="Case Details">Case Details</h5></th>
+            <th><h5 data-toggle="tooltip" title="Current Position Stage">Current Position Stage</h5></th>
+            <th><h5 data-toggle="tooltip" title="Advocate Appearing">Adv App</h5></th>
+            <th><h5 data-toggle="tooltip" title="Client Fee Due">CFD</h5></th>
+            <th><h5 data-toggle="tooltip" title="Next Stage">Next Stage</h5></th>
+            <th><h5 data-toggle="modal" data-target="#myModal">Next Date</h5></th>
+            <th><h5 data-toggle="tooltip" title="To Do List">To Do List</h5></th> 
+          </tr>
+        </thead>
 
-    <tbody>
+        <tbody>
             
 
-  <% @hearings.each do |hearing| %>
-      <tr>
+        <% @hearings.each do |hearing| %>
+
+        <tr>
 
         <!--  Previous Advocate -->
         <td>
           <% client_hearings = hearing.client_case.hearings %> 
           <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
-          <% if client_hearings.count == 1 %>
+          <% if client_hearings.count == 1 || hearing.date_of_hearing.to_date == Date.today %>
               -
           <% else %>
             <%= next_hearings[0].advocate.name %>
@@ -37,13 +38,20 @@
 
 
         <!--  Previous Date -->
-        <td>
+         <td>
           <% client_hearings = hearing.client_case.hearings %> 
-          <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
-          <% if client_hearings.count == 1 %>
+          <% minus_hearing = hearing.id - 1 %>
+          <%# next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+          <% if client_hearings.count == 1 || hearing.date_of_hearing.to_date == Date.today %>
               -
+          <% elsif hearing.id = minus_hearing %>
+
+            <%= hearing.date_of_hearing.strftime("%Y-%m-%d") %>
+
+
           <% else %>
-           <%= hearing.client_case.hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
+         
+           <%#= client_hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
           <% end %>
         </td>
 
@@ -70,7 +78,7 @@
         <!-- Advocate Appearing -->
         <td>
           <% client_hearings = hearing.client_case.hearings %>
-          <%= link_to client_hearings.last.advocate.name, advocate_path(hearing.advocate) %>
+          <%= link_to hearing.advocate.name, advocate_path(hearing.advocate) %>
         </td>
 
 
@@ -117,8 +125,6 @@
           <% end %>
         </td> 
 
-
-
         <!-- Next Date -->
         <td>
           <% if client_hearings.count == 1 %>
@@ -134,8 +140,8 @@
         </td>
 
         
-  </tr>
-  <% end %>
+      </tr>
+      <% end %>
   </tbody>
 
 </table>
@@ -157,53 +163,51 @@
         </div>
         <div class="modal-body">
 
+          <%= form_for([Hearing.new]) do |f| %>
+            <div class="field">
+              <%= f.label :date_of_hearing %><br>
+              <%= f.text_field :date_of_hearing %>
+            </div>
+            <div class="field">
+              <%= f.label :advocate_id %><br>
+              <%= f.collection_select :advocate_id, Advocate.all, :id , :name %>
+            </div>
+            <div class="field">
+              <%= f.label :case_status %><br>
+              <%= f.text_area :case_status %>
+            </div>
 
+            <div class="field">
+              <%= f.label :client_case_id %><br>
+              <%= f.collection_select :client_case_id, ClientCase.all, :id, :case_format %>
+            </div>
 
-                <%= form_for([Hearing.new]) do |f| %>
-                  <div class="field">
-                    <%= f.label :date_of_hearing %><br>
-                    <%= f.text_field :date_of_hearing %>
-                  </div>
-                  <div class="field">
-                    <%= f.label :advocate_id %><br>
-                    <%= f.collection_select :advocate_id, Advocate.all, :id , :name %>
-                  </div>
-                  <div class="field">
-                    <%= f.label :case_status %><br>
-                    <%= f.text_area :case_status %>
-                  </div>
-                  
-                  <%#= f.hidden_field :client_case_id, value: @client_case.id %> 
+            <div class="field">
+              <%= f.label :amount %><br>
+              <%= f.text_field :amount , :value => 500 %>
+            </div><br>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+          <% end %>
 
-                  <div class="field">
-                    <%= f.label :client_case_id %><br>
-                    <%= f.collection_select :client_case_id, ClientCase.all, :id, :case_format %>
-                  </div>
-
-                  <div class="field">
-                    <%= f.label :amount %><br>
-                    <%= f.text_field :amount , :value => 500 %>
-                  </div><br>
-                  <div class="actions">
-                    <%= f.submit %>
-                  </div>
-                <% end %>
-
-                 <script>
-                    $( function() {
-                      $( "#hearing_date_of_hearing" ).datepicker({
-                        dateFormat: 'yy-mm-dd',
-                        // minDate: 0,
-                        changeMonth: true,
-                        changeYear: true
-                      });
-                    } );
-                  </script>
+         <script>
+            $( function() {
+              $( "#hearing_date_of_hearing" ).datepicker({
+                dateFormat: 'yy-mm-dd',
+                // minDate: 0,
+                changeMonth: true,
+                changeYear: true
+              });
+            } );
+          </script>
    
         </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
+
       </div>
       
     </div>

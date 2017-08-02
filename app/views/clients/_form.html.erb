@@ -1,116 +1,103 @@
 <div class="row">
-<div class="col-md-4">
+  <div class="col-md-4">
 
-<%= nested_form_for(@client) do |f| %>
-  <% if @client.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
-
-      <ul>
-      <% @client.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+    <%= nested_form_for(@client) do |f| %>
+      <% if @client.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@client.errors.count, "error") %> prohibited this client from being saved:</h2>
+          <ul>
+          <% @client.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
 
   <div class="form-styling">
+
+      <div class="row mb">
+        <div class="col-md-4">
+          <%= f.label :primary_mobile %>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.text_field :primary_mobile %>
+          <span id="primaryMobileError"></span>
+        </div>
+
+         <!-- <p><%#= f.link_to_add "Add", :all_mobiles , id: "add-mobile" %></p>
+        <%#= f.fields_for :all_mobiles, @all_mobile do |task_form| %>
+          <%#= task_form.text_field :mobile %>
+          <%#= task_form.link_to_remove "Delete" %>
+        <%# end %> -->
+          
+      </div>
+
+      <div class="row mb">
+        <div class="col-md-4">
+          <%= f.label :name %>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.text_field :name %>
+          <span id="nameError"></span>
+        </div>
+      </div>
+
+
+      <div class="row mb">
+        <div class="col-md-4">
+          <%= f.label :address %>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.text_field :address %><br>
+          <span id="addressError"></span>
+        </div> 
+      </div>
+
+
+      <div class="row mb">
+        <div class="col-md-4">
+          <%= f.label :pincode %>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.text_field :pincode %><br>
+          <span id="pincodeError"></span>
+        </div>
+      </div>
+
 
 
 
       <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :primary_mobile %>
-          </div>
-
-          <div class="col-md-8">
-            <%= f.text_field :primary_mobile %>
-            <span id="primaryMobileError"></span>
-          </div>
-
-     <!-- <p><%#= f.link_to_add "Add", :all_mobiles , id: "add-mobile" %></p>
-
-    <%#= f.fields_for :all_mobiles, @all_mobile do |task_form| %>
-      <%#= task_form.text_field :mobile %>
-      <%#= task_form.link_to_remove "Delete" %>
-    <%# end %> -->
-          
+        <div class="col-md-4">
+          <%= f.label :email %>
         </div>
 
-        <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :name %>
-          </div>
-
-          <div class="col-md-8">
-            <%= f.text_field :name %>
-            <span id="nameError"></span>
-          </div>
-          
+        <div class="col-md-8">
+          <%= f.text_field :email %><br>
+          <span id="emailError"></span>
         </div>
-
-
-         <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :address %>
-          </div>
-
-          <div class="col-md-8">
-            <%= f.text_field :address %><br>
-            <span id="addressError"></span>
-          </div>
-          
-        </div>
-
-
-            <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :pincode %>
-          </div>
-
-          <div class="col-md-8">
-            <%= f.text_field :pincode %><br>
-            <span id="pincodeError"></span>
-          </div>
-          
-        </div>
-
-
-
-
-            <div class="row mb">
-          <div class="col-md-4">
-            <%= f.label :email %>
-          </div>
-
-          <div class="col-md-8">
-            <%= f.text_field :email %><br>
-            <span id="emailError"></span>
-          </div>
-          
-        </div>
-
-
-</div>
+      </div>
+  </div>
 
  
     
-  <div class="row mb">
-<div class="col-md-7 col-md-offset-5">
-    <div class="actions">
-      <%= f.submit "Create New Client", class: "btn btn-success" %>
-    </div>
-    <% end %>
-</div>
-</div>
+      <div class="row mb">
+        <div class="col-md-8 col-md-offset-4">
+          <div class="actions">
+            <%= f.submit "Create New Client", class: "btn btn-success" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
 
-
-
-</div>
+  </div>
 </div>
 
 <script>
-
 
   var primaryMobileHandle = document.getElementById('client_primary_mobile');
   var nameHandle = document.getElementById('client_name');
@@ -131,6 +118,10 @@
     }
     else if(!primaryMobileHandle.value != 10 ){
       primaryMobileErrorHandle.innerHTML = "mobile number should be 10 digits";
+    }
+
+    else if(primaryMobileHandle.value == 10 ){
+      primaryMobileErrorHandle.innerHTML = "";
     }
     else{
       primaryMobileErrorHandle.innerHTML = "";
@@ -160,7 +151,7 @@
       pincodeErrorHandle.innerHTML = "can't be blank";
     }
 
-    else if(pincodeHandle.value != 6 ){
+    else if(pincodeHandle.value!= 6 ){
       pincodeErrorHandle.innerHTML = "pincode should be 6 digits";
     }
 

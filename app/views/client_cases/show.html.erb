@@ -1,175 +1,168 @@
 <div class="container-fluid">
+  <div class="client-cases-show">
 
-<div class="client-cases-show">
-  <div class="row">
-    <div class="col-md-6">
+    <div class="row">
+      <div class="col-md-6">
         <h2><strong>Case : </strong><%= @client_case.case_format %></h2>
+      </div>
     </div>
-  </div>
 
-  <div class="row">
-  <div class="col-md-6">
-  <div class="case-details">  
     <div class="row">
       <div class="col-md-6">
-     <h3> Case Details </h3>
+        <div class="case-details">  
+
+          <div class="row">
+
+            <div class="col-md-6">
+              <h3> Case Details </h3>
+            </div>
+
+            <div class="col-md-6">
+              <% if params[:client_id].present? %>
+              <%= link_to edit_client_client_case_path(@client, @client_case), class: "btn btn-info" do %>Edit<% end %> 
+              <% else %>
+              <%= link_to edit_client_client_case_path(@advocate, @client_case), class: "btn btn-info" do %>Edit<% end %> 
+              <% end %>
+            </div>
+
+          </div>
+        </div>
       </div>
+
       <div class="col-md-6">
-      <% if params[:client_id].present? %>
-      <%= link_to edit_client_client_case_path(@client, @client_case), class: "btn btn-info" do %>Edit<% end %> 
-      <% else %>
-      <%= link_to edit_client_client_case_path(@advocate, @client_case), class: "btn btn-info" do %>Edit<% end %> 
-      <% end %>
+        <div class="case-details">
+          <div class="row">
+
+            <div class="col-md-6">
+              <h3> Hearings </h3>
+            </div>
+
+            <div class="col-md-6">
+             <%= link_to new_client_case_hearing_path(@client_case, @hearing), class: "btn btn-primary" do %>
+                 <i class="glyphicon glyphicon-plus"> </i> Add New Hearing
+              <% end %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
-  </div>
-    <div class="col-md-6">
-  <div class="case-details">
+
     <div class="row">
       <div class="col-md-6">
-      <h3> Hearings </h3>
+
+        <div class="row">
+          <div class="col-md-12">
+
+            <table class="table" border="0">
+
+              <tbody>
+                <tr>
+                  <td><p><strong>Client:</strong></p></td>
+                  <td><p> <%= @client_case.client.name %></p></td>
+                </tr>
+
+                <tr>
+                  <td><strong>Case number:</strong></td>
+                  <td><p><%= @client_case.case_number %></p></td>
+                </tr>
+
+                <tr>
+                  <td><p><strong>Case type:</strong></p></td>
+                  <td><p><%= @client_case.case_type.name %></p></td>
+                </tr>
+
+                <tr>
+                  <td><p><strong>Court hall:</strong></p></td>
+                  <td><p><%= @client_case.court_hall %></p></td>
+                </tr>
+
+                <tr>
+                  <td><p><strong>Case</strong></p></td>
+                  <td><p><%= @client_case.case_format %></p></td>
+                </tr>
+              </tbody> 
+              
+            </table>
+
+          </div>
       </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <table class="table" border="0">
+
+            <tbody>
+              <tr>
+
+                <td><p><strong>Amount to be paid:</strong></p></td>
+                  <% amount_to_be_paid = 0 %>
+                <td>
+                  <% hearing_amount = @client_case.hearings.pluck(:amount).inject(0){|sum,x| sum + x } %>
+                  <% hearing_fee_amount = 0 %>
+                  <% @client_case.hearings.each do |hearing| %>
+                    <% hearing.fees.each do |fee| %>
+                      <% hearing_fee_amount = hearing_fee_amount + fee.amount  %>
+                    <% end %>
+                  <% end %>
+                  <% total_to_be_paid = hearing_fee_amount + hearing_amount %>
+                  <p><%= total_to_be_paid %></p>
+                </td>
+
+              </tr>
+
+               <tr>
+
+                <td><p><strong>Amount paid:</strong></p></td>
+                <td>
+                  <% total_amount_paid = 0 %>
+                  <% @client_case.hearings.each do |hearing| %>
+                    <% total_amount_paid = total_amount_paid + hearing.payments.pluck(:amount).inject(0){|sum,x| sum + x } %>
+                  <% end %>
+                  <p><%= total_amount_paid %></p>
+                </td>
+
+              </tr>
+
+               <tr>
+                <td><p><strong>Balance:</strong></p></td>
+                <td><p><%= total_to_be_paid - total_amount_paid %></p></td>
+              </tr>   
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+      </div>
+
       <div class="col-md-6">
-       <%= link_to new_client_case_hearing_path(@client_case, @hearing), class: "btn btn-primary" do %>
-           <i class="glyphicon glyphicon-plus"> </i> Add New Hearing
-        <% end %>
-      </div>
-    </div>
-    </div>
-  </div>
-</div>
-
-<div class="row">
-
-  <div class="col-md-6">
-
-  <div class="row">
-    <div class="col-md-12">
-
-        <table class="table" border="0">
-
-  <tbody>
-     <tr>
-      <td><p><strong>Client:</strong></p></td>
-      <td><p> <%= @client_case.client.name %></p></td>
-    </tr>
-
-     <tr>
-      <td><strong>Case number:</strong></td>
-      <td><p><%= @client_case.case_number %></p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>Case type:</strong></p></td>
-      <td><p><%= @client_case.case_type.name %></p></td>
-    </tr>
-
-     <tr>
-
-      <td><p><strong>Court hall:</strong></p></td>
-      <td><p><%= @client_case.court_hall %></p></td>
-    </tr>
-
-
-
-    <tr>
-        <td><p><strong>Case</strong></p></td>
-        <td><p><%= @client_case.case_format %></p></td>
-    </tr>
-    
-  </tbody> 
-</table>
-
-    </div>
-  </div>
-
-  <div class="row">
-  <div class="col-md-12">
-  <table class="table" border="0">
-
-  <tbody>
-    <tr>
-      <td><p><strong>Amount to be paid:</strong></p></td>
-      <% amount_to_be_paid = 0 %>
-      <td><p>
-    
-
-        <% hearing_amount = @client_case.hearings.pluck(:amount).inject(0){|sum,x| sum + x } %>
-        <% hearing_fee_amount = 0 %>
-        <% @client_case.hearings.each do |hearing| %>
-          <% hearing.fees.each do |fee| %>
-            <% hearing_fee_amount = hearing_fee_amount + fee.amount  %>
-          <% end %>
-        <% end %>
-        <% total_to_be_paid = hearing_fee_amount + hearing_amount %>
-        <%= total_to_be_paid %>
-      </p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>Amount paid:</strong></p></td>
-      <td><p>
-        <% total_amount_paid = 0 %>
-        <% @client_case.hearings.each do |hearing| %>
-          <% total_amount_paid = total_amount_paid + hearing.payments.pluck(:amount).inject(0){|sum,x| sum + x } %>
-        <% end %>
-        <%= total_amount_paid %>
-      </p></td>
-    </tr>
-
-     <tr>
-      <td><p><strong>Balance:</strong></p></td>
-      <td><p><%= total_to_be_paid - total_amount_paid %></p></td>
-    </tr>
-
-    
-    
-  </tbody>
-</table>
-  </div>
-
-  </div>
-
-  
-
-  </div>
-
-  <div class="col-md-6">
       
-<div class="client-cases-show-body">
-<table class="table">
-  <thead>
-    <tr>
-      <th>No</th>
-      <th>Date</th>
-      <th>Advocate</th>
-      <th>Status</th>
-      <th>Action </th>
-    </tr>
-  </thead>
-  <tbody>
-   <% @client_case.hearings.each_with_index do |hearing, index| %>
-    <tr>
-        <td> <%= index + 1 %> </td>
-        <td><%= hearing.date_of_hearing.to_date.strftime("%d-%m-%Y") %></td>
-        <td><%= hearing.advocate.name %></td>
-        <td><%= hearing.case_status %></td>
-        <td><%= link_to client_case_hearing_path(hearing.client_case, hearing), class: "btn btn-success" do %> Show <% end %></td>
-      </tr>  
-   <% end %>
-  </tbody>
-</table>
-</div>
+        <div class="client-cases-show-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Date</th>
+                <th>Advocate</th>
+                <th>Status</th>
+                <th>Action </th>
+              </tr>
+            </thead>
+            <tbody>
+             <% @client_case.hearings.each_with_index do |hearing, index| %>
+              <tr>
+                  <td> <%= index + 1 %> </td>
+                  <td><%= hearing.date_of_hearing.to_date.strftime("%d-%m-%Y") %></td>
+                  <td><%= hearing.advocate.name %></td>
+                  <td><%= hearing.case_status %></td>
+                  <td><%= link_to client_case_hearing_path(hearing.client_case, hearing), class: "btn btn-success" do %> Show <% end %></td>
+                </tr>  
+             <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-</div>
-
-<%#= link_to 'Edit', edit_client_client_case_path(@client, @client_case) %> 
-<%#= link_to 'Back', client_cases_path %><br/>
-
-<%#= link_to 'Add hearing', new_client_case_hearing_path(@client_case, @hearing) %>
-
-</div>
 </div>
 

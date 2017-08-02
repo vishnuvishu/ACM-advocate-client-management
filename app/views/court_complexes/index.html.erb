@@ -32,9 +32,7 @@
         <td><%= court_complex.name %></td>
         <td><%= court_complex.state.name %></td>
         <td><%= court_complex.district.name %></td>
-        <!-- <td><%#= link_to court_complex, class: "btn btn-success" do %>Show<%# end %></td> -->
         <td><%= link_to edit_court_complex_path(court_complex), class: "btn btn-info" do %>Edit<% end  %></td>
-        <!-- <td><%#= link_to court_complex, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" do %>Delete <%# end %></td> -->
       </tr>
     <% end %>
   </tbody>
