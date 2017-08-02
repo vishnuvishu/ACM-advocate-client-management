@@ -1,0 +1,266 @@
+<section class="home1">
+	<div class="container-fluid">
+	<div class="row">
+	<div class="col-md-8">
+
+		<div class="row pd-btm">
+			<div class="col-md-3 ">
+				<div class="box1">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3">
+									<i class="fa fa-user" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12 count">
+									<span><%= @clients.length %></span><br>
+									<h4>Clients</h4>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 ">
+				<div class="box2">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3">
+									<i class="fa fa-gavel" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12 count">
+									<span><%= @client_cases.length %></span><br>
+									<h4>Cases</h4>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 ">
+				<div class="box3">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3">
+									<i class="fa fa-files-o" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12 count">
+									<span><%= @hearings.length %></span><br>
+									<h4>Hearings</h4>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 ">
+				<div class="box4">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3">
+									<i class="fa fa-graduation-cap" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12 count">
+									<span><%= @advocates.length %></span><br>
+									<h4>Advocates</h4>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<div class="col-md-3 ">
+				<div class="box5">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3">
+									<i class="fa fa-bell" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12 count">
+									<span><%= @to_do_lists.length %></span><br>
+									<h4>Notifications</h4>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 ">
+				<div class="box6">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3">
+									<i class="fa fa-book" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12 count">
+									<span><%= @notices.length %></span><br>
+									<h4>Notices</h4>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-3 ">
+				<div class="box7">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3">
+									<i class="fa fa-file" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12 count">
+
+									<span><%= @case_types.length %></span><br>
+									<h4>Case Types</h4>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+
+				<div class="col-md-3 ">
+				<div class="box8">
+					<div class="row">
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-2 col-md-offset-3">
+									<i class="fa fa-inr" aria-hidden="true"></i>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="row">
+								<div class="col-md-12 count">
+									<span><%= @payments.length + @fees.length %></span><br>
+									<h4>Transactions</h4>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+
+			<div class="col-md-12">
+			<div class="column-chart">
+
+			  <% data = {} %>
+		      <% data["Clients"] = @clients.size %>
+		      <% data["Cases"] = @client_cases.size %>
+		      <% data["Hearings"] = @hearings.size %>
+		      <% data["Advocates"] = @advocates.size %>
+		      <% data["Notifications"] = @to_do_lists.size %>
+		      <% data["Notices"] = @notices.size %>
+		      <% data["Case Types"] = @case_types.size %>
+		      <% data["Transactions"] = @payments.size + @fees.size %>
+		      <%= column_chart(data) %>
+
+			</div>
+			</div>
+		</div>
+
+
+</div>
+
+<div class="col-md-4">
+<div class="pie-chart">
+				  <% total_clients = @clients.length %>
+			      <% total_client_cases = @client_cases.length %>
+			      <% total_hearings = @hearings.length %>
+			      <% total_advocates = @advocates.length %>
+			      <% total_to_do_lists = @to_do_lists.length %>
+			      <% total_notices = @notices.length %>
+			      <% total_case_types = @case_types.length %>
+			      <% total_transactions = @payments.length + @fees.length %>
+			     
+
+			      <%= pie_chart({"Clients" =>  total_clients, "Cases" =>  total_client_cases , "Hearings" => total_hearings, "Advocates" => total_advocates, "Advocates" => total_advocates, "Notifications" => total_to_do_lists, "Notices" => total_notices, "Case Types" => total_case_types, "Transactions" => total_transactions}) %>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+</section>	
+

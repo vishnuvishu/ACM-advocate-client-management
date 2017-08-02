@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'home1/index'
+
   resources :payments
   resources :notice_images
   resources :notices

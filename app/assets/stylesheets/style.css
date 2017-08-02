@@ -237,7 +237,98 @@ a.navbar-brand img{
 }
 
 
+/* home1 */
 
+.home1 .box1{
+    background: #347ab8;
+    padding: 15px 0px;
+}
+
+
+.home1 .box2{
+    background: #5db85b;
+    padding: 15px 0px;
+}
+
+.home1 .box3{
+    background: #efad4d;
+    padding: 15px 0px;
+}
+
+.home1 .box4{
+    background: #d95350;
+    padding: 15px 0px;
+}
+
+.home1 .box5{
+    background: #b8b739;
+    padding: 15px 0px;
+}
+
+
+.home1 .box6{
+    background: #fa4c4d;
+    padding: 15px 0px;
+}
+
+.home1 .box7{
+    background: #129d80;
+    padding: 15px 0px;
+}
+
+.home1 .box8{
+    background: #b738b9;
+    padding: 15px 0px;
+}
+
+
+
+
+.home1 i.fa.fa-user,
+.home1 i.fa.fa-gavel,
+.home1 i.fa.fa-graduation-cap,
+.home1 i.fa.fa-files-o,
+.home1 i.fa.fa-bell,
+.home1 i.fa.fa-book,
+.home1 i.fa.fa-file,
+.home1 i.fa.fa-inr{
+    color: #fff;
+    font-size: 40px;
+    padding: 20px 0px;
+}
+
+.home1 .pd-btm{
+    padding-bottom: 20px
+}
+
+
+
+.home1 .count{
+       padding-top: 10px;
+}
+
+.home1 span{
+    font-size: 24px;
+    font-weight: 700;
+    color: #ecf0f5;
+}
+
+.home1 h4{
+    color: #2f1515;
+}
+
+.home1 .pie-chart{
+    border: 1px solid #ccc8c8;
+    padding: 10px;
+    background: #e8e8e8;
+}
+
+.home1 .column-chart{
+    border: 1px solid #ccc8c8;
+    padding: 10px;
+    background: #e8e8e8;
+    margin-top: 35px;
+}
 
 
  

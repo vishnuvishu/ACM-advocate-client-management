@@ -14,6 +14,7 @@ gem 'wkhtmltopdf-binary'
 gem 'carrierwave', '>= 1.0.0.rc', '< 2.0'
 gem 'pry-rails'
 gem 'puma'
+gem "chartkick"
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
