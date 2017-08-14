@@ -23,11 +23,17 @@ class ClientCase < ActiveRecord::Base
 		"#{self.case_type.name.split("-").first}-#{self.case_number}/#{self.case_year.to_s.split("").slice(2,3).join("")} #{self.client_name} Vs #{self.opponent_name}"
 	end
 
+	#case format can be displayed in any page of the application just by calling this method.
+
 	before_save :generate_file_no
 
 	def generate_file_no
 		file_no = 101
 		self.file_no = ClientCase.last.file_no.to_i + 1
 	end
+
+	#the file number in the client cases is auto generate so it is starting from 101 which is non editable
+
+
 	
 end

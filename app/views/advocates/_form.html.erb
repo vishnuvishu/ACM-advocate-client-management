@@ -67,7 +67,7 @@
     </div> 
 
       <div class="row mb">
-        <div class="col-md-2 col-md-offset-5">
+        <div class="col-md-5 col-md-offset-2">
             <div class="actions">
               <%= f.submit "Submit", class: "btn btn-success" %>
             </div>
@@ -115,12 +115,16 @@
     if(advocateMobileHandle.value.length == ""){
       advocateMobileErrorHandle.innerHTML = "can't be blank";
     }
+
+    else if(advocateMobileHandle.value.length != 10){
+      advocateMobileErrorHandle.innerHTML = "phone number should be 10 digits";
+    }
     else{
       advocateMobileErrorHandle.innerHTML = "";
     }
   }
 
-   advocateRollNoHandle.onblur = function(){
+  advocateRollNoHandle.onblur = function(){
     if(advocateRollNoHandle.value.length == ""){
       advocateRollNoErrorHandle.innerHTML = "can't be blank";
     }

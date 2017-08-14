@@ -116,13 +116,11 @@
     if(primaryMobileHandle.value.length == ""){
       primaryMobileErrorHandle.innerHTML = "can't be blank";
     }
-    else if(!primaryMobileHandle.value != 10 ){
-      primaryMobileErrorHandle.innerHTML = "mobile number should be 10 digits";
+  
+    else if(primaryMobileHandle.value.length != 10){
+      primaryMobileErrorHandle.innerHTML = "phone number should be 10 digits";
     }
 
-    else if(primaryMobileHandle.value == 10 ){
-      primaryMobileErrorHandle.innerHTML = "";
-    }
     else{
       primaryMobileErrorHandle.innerHTML = "";
     }
@@ -151,7 +149,7 @@
       pincodeErrorHandle.innerHTML = "can't be blank";
     }
 
-    else if(pincodeHandle.value!= 6 ){
+    else if(pincodeHandle.value.length != 6 ){
       pincodeErrorHandle.innerHTML = "pincode should be 6 digits";
     }
 

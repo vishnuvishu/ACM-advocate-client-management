@@ -1,4 +1,7 @@
-<%= form_for(@notice) do |f| %>
+<div class="row">
+  <div class="col-md-6">
+
+  <%= form_for(@notice) do |f| %>
   <% if @notice.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@notice.errors.count, "error") %> prohibited this notice from being saved:</h2>
@@ -11,34 +14,88 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :notice_no %><br>
-    <%= f.text_field :notice_no %>
-  </div>
-  <div class="field">
-    <%= f.label :client_name %><br>
-    <%= f.collection_select :client_id, Client.all, :id, :name %>
-  </div>
-  <div class="field">
-    <%= f.label :opponent_name %><br>
-    <%= f.text_field :opponent_name %>
-  </div>
-  <div class="field">
-    <%= f.label :opponent_address %><br>
-    <%= f.text_area :opponent_address %>
-  </div>
-  <div class="field">
-    <%= f.label :date_of_notice %><br>
-    <%= f.text_field :date_of_notice %>
-  </div>
-   <div class="field">
-    <%= f.label :cover %><br>
-    <%= f.file_field :cover %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+   <div class="form-styling">
+
+    <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :notice_no %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.text_field :notice_no %>
+        </div>
+        <span id="advocateNameError"></span>
+    </div>
+
+    <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :client_name %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.collection_select :client_id, Client.all, :id, :name, prompt: "Select Client" %>
+        </div>
+        <span id="advocateNameError"></span>
+    </div>
+
+    <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :opponent_name %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.text_field :opponent_name %>
+        </div>
+        <span id="advocateNameError"></span>
+    </div>
+
+    <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :opponent_address %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.text_field :opponent_address %>
+        </div>
+        <span id="advocateNameError"></span>
+    </div>
+
+     <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :date_of_notice %><br>
+        </div>
+
+        <div class="col-md-5">
+          <%= f.text_field :date_of_notice %>
+        </div>
+        <span id="advocateNameError"></span>
+    </div>
+
+    <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :cover %><br>
+        </div>
+
+        <div class="col-md-5">
+           <%= f.file_field :cover %>
+        </div>
+        <span id="advocateNameError"></span>
+    </div>
+
+    </div>
+
+    <div class="row mb">
+        <div class="col-md-5 col-md-offset-2">
+            <div class="actions">
+              <%= f.submit "Submit", class: "btn btn-success" %>
+            </div>
+            <% end %>
+        </div>
+      </div>
+
+
+ </div>
+</div>
 
 
  <script>

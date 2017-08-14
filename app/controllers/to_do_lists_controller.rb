@@ -72,3 +72,4 @@ class ToDoListsController < ApplicationController
       params.require(:to_do_list).permit(:title, :description, :list_date, :client_case_id, :advocate_id, :advocate_to, :advocate_from, :is_litigation)
     end
 end
+  

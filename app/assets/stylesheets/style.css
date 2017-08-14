@@ -158,10 +158,10 @@ a.navbar-brand img{
     background-color: #fff;
 }
 
- .main-heading-body .btn{
+/* .main-heading-body .btn{
    padding: 3px 8px;
     font-size: 10px;
-}
+}*/
 
 .table td{
     padding: 6px !important;
@@ -617,11 +617,12 @@ a.navbar-brand img{
     margin: 0px;
     padding: 5px 0px;
     font-size: 20px;
+    color: #044267;
+    font-weight: 700;
 
 }
 
 .invoices-new .Particulars{
-    background: #7e71a9;
     margin-bottom: 20px;
 }
 

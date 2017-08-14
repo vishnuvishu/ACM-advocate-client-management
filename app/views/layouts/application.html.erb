@@ -34,15 +34,10 @@
 <link rel="apple-touch-icon" sizes="72x72" href="/images/android-icon-72x72.png">
 <link rel="apple-touch-icon" sizes="114x114" href="/images/android-icon-144x144.png">
 
-
 </head>
 <body>
 
-
-
 <% if user_signed_in? %>
-
-
 
 <nav class="navbar navbar-default">
   <div class="container-fluid">
@@ -79,6 +74,7 @@
           <li><%= link_to "To do List", to_do_lists_path %></li>
           <li><%= link_to "Invoice", invoices_path %> </li>
           <li><%= link_to "Notice", notices_path %> </li>
+     
 
 
           <li class="dropdown">

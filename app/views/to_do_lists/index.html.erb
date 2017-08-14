@@ -36,7 +36,7 @@
       <tr>
         <td><%= to_do_list.title %></td>
         <td><%= to_do_list.description %></td>
-        <td><%= to_do_list.list_date.strftime("%d-%m-%Y") %></td>
+        <td><%#= to_do_list.list_date.strftime("%d-%m-%Y") %></td>
         <td><%= to_do_list.client_case.try(:case_format) %></td>
         <td><%= to_do_list.advocate_from %></td>
         <td><%= to_do_list.advocate_to %></td>
