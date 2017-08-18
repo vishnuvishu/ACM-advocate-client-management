@@ -328,6 +328,7 @@ CourtComplex.create(name: "District Court Complex-Vijayapur", state_id: 1, distr
 CourtComplex.create(name: "Court Complex-Shahapur", state_id: 1, district_id: 30)
 CourtComplex.create(name: "Court Complex-Yadgir", state_id: 1, district_id: 30)
 
+User.create(email: "admin@gmail.com", password: "secret123", is_admin: true)
 
 
 

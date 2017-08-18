@@ -22,8 +22,7 @@
             
 
         <% @hearings.each do |hearing| %>
-
-        <tr>
+      <tr>
 
         <!--  Previous Advocate -->
         <td>
@@ -38,7 +37,7 @@
 
 
         <!--  Previous Date -->
-         <td>
+        <td>
           <% client_hearings = hearing.client_case.hearings %> 
           <% minus_hearing = hearing.id - 1 %>
           <%# next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
@@ -51,7 +50,7 @@
 
           <% else %>
          
-           <%#= client_hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
+           <%= client_hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
           <% end %>
         </td>
 
@@ -117,20 +116,23 @@
         <!-- Next Stage -->
         <td>
           <% client_hearings = hearing.client_case.hearings %> 
+
           <% next_hearings =  client_hearings.where('date_of_hearing >= ?', hearing.date_of_hearing).order('date_of_hearing') %>
           <% if client_hearings.count == 1 %>
               -
           <% else %>
-              <%#= next_hearings[1].case_status %> 
+              <%= next_hearings[1].case_status %> 
           <% end %>
         </td> 
+
+
 
         <!-- Next Date -->
         <td>
           <% if client_hearings.count == 1 %>
               -
           <% else %>
-            <%#= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
+            <%= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
           <% end %>
         </td>
 
@@ -140,8 +142,8 @@
         </td>
 
         
-      </tr>
-      <% end %>
+  </tr>
+  <% end %>
   </tbody>
 
 </table>
@@ -214,7 +216,78 @@
   </div>
 
 <script>
+
 $(document).ready(function(){
-    $('#main-table').DataTable();
-});
+        $('#main-table').DataTable();
+    });
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); 
+    });
+
+    var flag = {
+      dateofhearing: false, 
+      advocate: false, 
+      casestatus: false,
+      clientcase: false
+    } 
+
+
+      var dateOfHearingHandle = document.getElementById('hearing_date_of_hearing');
+      var advocateHandle = document.getElementById('hearing_advocate_id')
+      var caseStatusHandle = document.getElementById('hearing_case_status');
+      var clientCaseHandle = document.getElementById('hearing_client_case_id')
+      var submitHandle = document.getElementById('submit');
+      submitHandle.disabled = true;
+
+      var dateOfHearingErrorHandle = document.getElementById('dateOfHearingError');
+      var caseStatusErrorHandle = document.getElementById('caseStatusError');
+
+      dateOfHearingHandle.onchange = function(){
+        if(dateOfHearingHandle.value != ""){
+          flag.dateofhearing = true;
+          showSubmitBtn(flag);
+        }
+      }
+
+      advocateHandle.onblur = function(){
+        if(!advocateHandle.value == ""){
+          flag.advocate = true;
+          showSubmitBtn(flag);
+        }
+      }
+
+      caseStatusHandle.onblur = function(){
+        if(caseStatusHandle.value.length == ""){
+          caseStatusErrorHandle.innerHTML = "can't be blank";
+        }
+        else{
+          caseStatusErrorHandle.innerHTML = "";
+          flag.casestatus = true;
+          showSubmitBtn(flag);
+        }
+      }
+
+       clientCaseHandle.onchange = function(){
+        if(!clientCaseHandle.value == ""){
+          flag.clientcase = true;
+          showSubmitBtn(flag);
+        }
+      }
+
+
+      function showSubmitBtn(flag){
+        var innerFlag = 0;
+        for(var key in flag){
+          if(flag[key] == false){
+            innerFlag = false;
+          } else {
+           innerFlag += 1;
+          }
+        }
+        if(innerFlag === 4){
+          submitHandle.disabled = false;
+        }else {
+          submitHandle.disabled = true;
+        }
+      }
 </script>

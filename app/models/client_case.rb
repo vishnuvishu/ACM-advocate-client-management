@@ -28,8 +28,12 @@ class ClientCase < ActiveRecord::Base
 	before_save :generate_file_no
 
 	def generate_file_no
-		file_no = 101
-		self.file_no = ClientCase.last.file_no.to_i + 1
+		
+		if ClientCase.first.nil?
+			self.file_no = 101
+		else
+			self.file_no = ClientCase.last.file_no.to_i + 1
+		end
 	end
 
 	#the file number in the client cases is auto generate so it is starting from 101 which is non editable

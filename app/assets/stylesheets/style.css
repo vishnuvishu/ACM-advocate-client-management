@@ -201,6 +201,13 @@ a.navbar-brand img{
     font-weight: 700;
 }
 
+/* notices show */
+
+.notices-show button.btn.btn-primary{
+    float: right;
+    margin-bottom: 10px;
+}
+
 
 /* clients index */
 

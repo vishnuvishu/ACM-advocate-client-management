@@ -26,7 +26,7 @@
         <td><%= hearing.date_of_hearing.to_date %></td>
         <td><%= hearing.advocate.name %></td>
         <td><%= hearing.case_status %></td>
-        <td><%= hearing.client_case.case_format %></td>
+        <td><%= hearing.client_case.try(:case_format) %></td>
         <td><%= hearing.amount %></td>
         <td><%= link_to client_case_hearing_path(hearing.client_case, hearing), class: "btn btn-success" do %> Show <% end %></td>
         <td><%= link_to edit_client_case_hearing_path(hearing.client_case, hearing), class: "btn btn-info" do %>Edit <% end %></td>
