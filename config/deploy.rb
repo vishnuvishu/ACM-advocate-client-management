@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-lock '3.9.0'
+lock '3.8.1'
 
 set :repo_url,        'git@github.com:vishnuvishu/ACM-advocate-client-management.git'
 set :user,            'deploy'
