@@ -17,6 +17,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'cancancan'
 
 group :production do
   gem 'pg'
@@ -24,7 +25,7 @@ end
 
 group :development, :test do
   gem 'byebug'
-  gem 'pry-rails'
+  # gem 'pry-rails'
 end
 
 group :development do

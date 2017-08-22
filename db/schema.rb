@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170701071111) do
+ActiveRecord::Schema.define(version: 20170822104826) do
 
   create_table "advocates", force: :cascade do |t|
     t.string   "name"
@@ -146,6 +146,12 @@ ActiveRecord::Schema.define(version: 20170701071111) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "roles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "states", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -175,9 +181,9 @@ ActiveRecord::Schema.define(version: 20170701071111) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "is_admin"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.integer  "role_id"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  
   get 'home1/index'
 
   resources :payments
@@ -7,6 +8,8 @@ Rails.application.routes.draw do
   resources :invoices
   resources :to_do_lists
   resources :all_mobiles
+  resources :roles
+  resources :users
   devise_for :users
   
   get 'home/index'
@@ -22,9 +25,6 @@ Rails.application.routes.draw do
   resources :fees
   resources :hearings
   resources :advocates
-  #resources :clients
-
-
 
   resources :clients do
     resources :client_cases

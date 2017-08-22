@@ -358,9 +358,11 @@ district_id = District.find_by_name("YADGIR").id
 CourtComplex.create(name: "Court Complex-Shahapur", state_id: state_id, district_id: district_id)
 CourtComplex.create(name: "Court Complex-Yadgir", state_id: state_id, district_id: district_id)
 
-User.create(email: "admin@gmail.com", password: "secret123", is_admin: true)
+role_id = Role.find_by_name("Admin").id
+User.create(email: "sigmato.web@gmail.com", password: "Sigmato456&", role_id: role_id)
 
 
 
 
 
+	

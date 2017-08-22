@@ -1,6 +1,8 @@
 class NoticeImagesController < ApplicationController
   before_action :set_notice_image, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /notice_images
   # GET /notice_images.json
   def index

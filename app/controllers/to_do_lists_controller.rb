@@ -1,6 +1,8 @@
 class ToDoListsController < ApplicationController
   before_action :set_to_do_list, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /to_do_lists
   # GET /to_do_lists.json
   def index

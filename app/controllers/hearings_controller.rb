@@ -1,6 +1,8 @@
 class HearingsController < ApplicationController
   before_action :set_hearing, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /hearings
   # GET /hearings.json
   def index

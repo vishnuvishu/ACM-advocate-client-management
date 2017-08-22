@@ -1,6 +1,8 @@
  class ClientCasesController < ApplicationController
   before_action :set_client_case, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /client_cases
   # GET /client_cases.json
   def index
