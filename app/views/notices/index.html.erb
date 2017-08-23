@@ -17,9 +17,10 @@
 
 
 
-<table class="table">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Sl no</th>
       <th>Notice no</th>
       <th>Client</th>
       <th>Opponent name</th>
@@ -31,17 +32,18 @@
   </thead>
 
   <tbody>
-    <% @notices.each do |notice| %>
+    <% @notices.each_with_index do |notice, index| %>
       <tr>
+        <td><%= index + 1 %></td>
         <td><%= notice.notice_no %></td>
         <td><%= notice.client.name %></td>
         <td><%= notice.opponent_name %></td>
         <td><%= notice.opponent_address %></td>
-        <td><%= notice.date_of_notice %></td>
+        <td><%= notice.date_of_notice.strftime("%d-%m-%Y") %></td>
         <td><%= image_tag(notice.cover.url, size:"25x25")%></td>
-        <td><%= link_to 'Show', notice %></td>
-        <td><%= link_to 'Edit', edit_notice_path(notice) %></td>
-        <td><%= link_to 'Destroy', notice, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to notice, class: "btn btn-success" do %> Show <% end %></td>
+        <td><%= link_to edit_notice_path(notice), class: "btn btn-info" do %>Edit <% end  %></td>
+        <!-- <td><%#= link_to 'Destroy', notice, method: :delete, data: { confirm: 'Are you sure?' } %></td> -->
       </tr>
     <% end %>
   </tbody>

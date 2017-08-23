@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   get 'home1/index'
 
+  devise_for :users
   resources :payments
   resources :notice_images
   resources :notices
@@ -10,7 +11,7 @@ Rails.application.routes.draw do
   resources :all_mobiles
   resources :roles
   resources :users
-  devise_for :users
+  
   
   get 'home/index'
   get 'home/reload_table'

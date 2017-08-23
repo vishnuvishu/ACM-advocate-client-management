@@ -30,7 +30,7 @@ class ToDoListsController < ApplicationController
 
     respond_to do |format|
       if @to_do_list.save
-        format.html { redirect_to @to_do_list, notice: 'To do list was successfully created.' }
+        format.html { redirect_to to_do_lists_path, notice: 'To do list was successfully created.' }
         format.json { render :show, status: :created, location: @to_do_list }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class ToDoListsController < ApplicationController
   def update
     respond_to do |format|
       if @to_do_list.update(to_do_list_params)
-        format.html { redirect_to @to_do_list, notice: 'To do list was successfully updated.' }
+        format.html { redirect_to to_do_lists_path, notice: 'To do list was successfully updated.' }
         format.json { render :show, status: :ok, location: @to_do_list }
       else
         format.html { render :edit }

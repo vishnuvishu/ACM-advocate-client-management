@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-4">
+
+    <%= form_for(@user) do |f| %> 
+      <% if @user.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@usererrors.count, "error") %> prohibited this fee from being saved:</h2>
+
+          <ul>
+          <% @user.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="form-styling">
+
+      <div class="row mb">
+        <div class="col-md-4">
+          <%= f.label :email %>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.text_field :email %>
+       </div>   
+      </div>
+
+      <div class="row mb">
+        <div class="col-md-4">
+          <%= f.label :password %>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.text_field :password %>
+        </div>   
+      </div>
+
+        <div class="row mb">
+        <div class="col-md-4">
+          <%= f.label :role %>
+        </div>
+
+        <div class="col-md-8">
+          <%= f.collection_select :role_id, Role.all, :id, :name, prompt: "Select Role" %>
+        </div>   
+      </div>
+
+
+      <div class="row mb">
+        <div class="col-md-8 col-md-offset-4">
+          <div class="actions">
+            <%= f.submit "Add New User", class: "btn btn-success" %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  

@@ -67,7 +67,7 @@
     <div class="col-md-6">
       <div class="client-info">
           <% if @client.client_cases.count == 0 %>
-           <h3> No Cases Found </h3>
+           <h5> No Cases Found </h5>
           <% else %>
           <% @client.client_cases.each do |client_case| %>
               <ul>

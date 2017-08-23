@@ -6,7 +6,7 @@ class Ability
     if user.role? "Admin"
         can :manage, [Advocate, Client, ClientCase, Fee, Hearing, Invoice, Notice, NoticeImage, Payment, Role, ToDoList, User]
     elsif user.role? "User"
-        can [:read], [Advocate, Client, ClientCase, Invoice, Notice, NoticeImage, Payment, User]
+        can [:read], [Advocate, Client, ClientCase, Invoice, Notice, NoticeImage, Payment]
         can [:create, :read, :update], [Hearing, ToDoList]
     end 
     

@@ -5,9 +5,10 @@
     <h1>All Cases</h1>
 </div>
 
-<table class="table">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Sl.no</th>
       <th>Case</th>
       <th>Client</th>
       <th>Court hall</th>
@@ -24,8 +25,9 @@
   </thead>
 
   <tbody>
-    <% @client_cases.each do |client_case| %>
+    <% @client_cases.each_with_index do |client_case, index| %>
       <tr>
+        <td><%= index + 1 %>
         <td><%= client_case.case_format %></td>
         <td><%= client_case.client.try(:name)%></td>
         <td><%= client_case.try(:court_hall) %></td>

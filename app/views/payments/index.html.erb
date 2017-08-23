@@ -2,9 +2,10 @@
 
 <h1>Listing Payments</h1>
 
-<table class="table">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Sl no</th>
       <th>Hearing</th>
       <th>Amount</th>
       <th>Comment</th>
@@ -13,14 +14,12 @@
   </thead>
 
   <tbody>
-    <% @payments.each do |payment| %>
+    <% @payments.each_with_index do |payment, index| %>
       <tr>
-        <td><%= payment.hearing_id %></td>
+        <td><%= index + 1 %></td>
+        <td><%= payment.hearing.case_status %></td>
         <td><%= payment.amount %></td>
         <td><%= payment.comment %></td>
-        <td><%= link_to 'Show', payment %></td>
-        <td><%= link_to 'Edit', edit_payment_path(payment) %></td>
-        <td><%= link_to 'Destroy', payment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

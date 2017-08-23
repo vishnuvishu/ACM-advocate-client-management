@@ -13,7 +13,7 @@
             <th><h5 data-toggle="tooltip" title="Advocate Appearing">Adv App</h5></th>
             <th><h5 data-toggle="tooltip" title="Client Fee Due">CFD</h5></th>
             <th><h5 data-toggle="tooltip" title="Next Stage">Next Stage</h5></th>
-            <th><h5 data-toggle="modal" data-target="#myModal">Next Date</h5></th>
+            <th><h5 data-toggle="modal" data-target="#myModal">Next Date<i class="fa fa-plus" aria-hidden="true"></i></h5></th>
             <th><h5 data-toggle="tooltip" title="To Do List">To Do List</h5></th> 
           </tr>
         </thead>
@@ -21,7 +21,7 @@
         <tbody>
             
 
-        <% @hearings.each do |hearing| %>
+    <% @hearings.each do |hearing| %>
       <tr>
 
         <!--  Previous Advocate -->
@@ -164,56 +164,89 @@
           <h4 class="modal-title">Add Your Hearing</h4>
         </div>
         <div class="modal-body">
+         
+            <%= form_for([Hearing.new]) do |f| %>
+            
+            <div class="modal-styling">
 
-          <%= form_for([Hearing.new]) do |f| %>
-            <div class="field">
-              <%= f.label :date_of_hearing %><br>
-              <%= f.text_field :date_of_hearing %>
-            </div>
-            <div class="field">
-              <%= f.label :advocate_id %><br>
-              <%= f.collection_select :advocate_id, Advocate.all, :id , :name %>
-            </div>
-            <div class="field">
-              <%= f.label :case_status %><br>
-              <%= f.text_area :case_status %>
+                <div class="row mb"> 
+                  <div class="col-md-3">
+                  <%= f.label :date_of_hearing %>
+                  </div>
+                  <div class="col-md-6">
+                  <%= f.text_field :date_of_hearing %>
+                  <span id="dateOfHearingError"></span>
+                  </div>
+                </div>
+
+                <div class="row mb">
+                  <div class="col-md-3">
+                  <%= f.label :advocate_id %>
+                  </div>
+                  <div class="col-md-6">
+                   <%= f.collection_select :advocate_id, Advocate.all, :id , :name, prompt: "Select Advocate" %>
+                  </div>
+                </div>
+
+                <div class="row mb">
+                  <div class="col-md-3">
+                  <%= f.label :case_status %>
+                  </div>
+                  <div class="col-md-6">
+                   <%= f.text_area :case_status %>
+                   <span id="caseStatusError"></span>
+                  </div>
+                </div>
+
+                <div class="row mb">
+                  <div class="col-md-3">
+                  <%= f.label :client_case_id %>
+                  </div>
+                  <div class="col-md-6">
+                   <%= f.collection_select :client_case_id, ClientCase.all, :id, :case_format, prompt: "Select Case" %>
+                  </div>
+                </div>
+
+                <div class="row mb">
+                  <div class="col-md-3">
+                  <%= f.label :amount %>
+                  </div>
+                  <div class="col-md-6">
+                   <%= f.text_field :amount , :value => 500 %>
+                  </div>
+                </div>
+
             </div>
 
-            <div class="field">
-              <%= f.label :client_case_id %><br>
-              <%= f.collection_select :client_case_id, ClientCase.all, :id, :case_format %>
+            <div class="row mb">
+              <div class="col-md-6 col-md-offset-3">
+                <div class="actions">
+                  <%= f.submit "Submit", class: "btn btn-success", id: "submit" , data: { disable_with: "Please wait..."} %>
+                </div>
+                  <% end %>
+              </div>
             </div>
 
-            <div class="field">
-              <%= f.label :amount %><br>
-              <%= f.text_field :amount , :value => 500 %>
-            </div><br>
-            <div class="actions">
-              <%= f.submit %>
-            </div>
-          <% end %>
+           <script>
+              $( function() {
+                $( "#hearing_date_of_hearing" ).datepicker({
+                  dateFormat: 'yy-mm-dd',
+                  // minDate: 0,
+                  changeMonth: true,
+                  changeYear: true
+                });
+              } );
+            </script>
 
-         <script>
-            $( function() {
-              $( "#hearing_date_of_hearing" ).datepicker({
-                dateFormat: 'yy-mm-dd',
-                // minDate: 0,
-                changeMonth: true,
-                changeYear: true
-              });
-            } );
-          </script>
-   
         </div>
-
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" ,  id: "submit" >Close</button>
         </div>
-
       </div>
       
     </div>
   </div>
+  
 
 <script>
 

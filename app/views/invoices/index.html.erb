@@ -16,9 +16,10 @@
 </div>
 
 
-<table class="table">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Sl no </th>
       <th width="5%">Invoice number</th>
       <th width="5%">Client</th>
       <th width="20%">Client case</th>
@@ -31,8 +32,9 @@
   </thead>
 
   <tbody>
-    <% @invoices.each do |invoice| %>
+    <% @invoices.each_with_index do |invoice, index| %>
       <tr>
+        <td><%= index + 1 %>
         <td><%= invoice.invoice_number %></td>
         <td><%= invoice.client.try(:name) %></td>
         <td><%= invoice.client_case.try(:case_format) %></td>

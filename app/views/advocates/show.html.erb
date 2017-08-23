@@ -57,10 +57,16 @@
 
         <div class="col-md-6">
           <div class="client-info">
+          
+            <% if @advocate.client_cases.count == 0 %>
+            <h5> No Cases Found </h5>
+            <% else %>
+
             <% @advocate.client_cases.each do |client_case| %>
               <ul>
                 <li><i class="fa fa-gavel" aria-hidden="true"></i> <%= link_to link_to client_case.case_format, advocate_client_case_path(@advocate, client_case) %></li>
               </ul>
+            <% end %>
             <% end %>
           </div>
         </div>

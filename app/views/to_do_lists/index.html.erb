@@ -17,9 +17,10 @@
 
 
 <div class="main-heading-body"> 
-<table class="table">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Sl no </th>
       <th>Title</th>
       <th>Description</th>
       <th>List date</th>
@@ -32,15 +33,22 @@
   </thead>
 
   <tbody>
-    <% @to_do_lists.each do |to_do_list| %>
+    <% @to_do_lists.each_with_index do |to_do_list, index| %>
       <tr>
+        <td><%= index + 1 %></td>
         <td><%= to_do_list.title %></td>
         <td><%= to_do_list.description %></td>
-        <td><%#= to_do_list.list_date.strftime("%d-%m-%Y") %></td>
+        <td><%= to_do_list.list_date.strftime("%d-%m-%Y") %></td>
         <td><%= to_do_list.client_case.try(:case_format) %></td>
-        <td><%= to_do_list.advocate_from %></td>
-        <td><%= to_do_list.advocate_to %></td>
-        <td><%= to_do_list.is_litigation %></td>
+        <td><%= Advocate.find(to_do_list.advocate_from).name %></td>
+        <td><%= Advocate.find(to_do_list.advocate_to).name %></td>
+        <td>
+          <% if to_do_list.is_litigation == true %>
+            <%= "litigation" %>
+          <% else %>
+          <%= "non litigation" %>
+          <% end %>
+        </td>
         <td><%#= link_to 'Show', to_do_list %></td>
         <td><%= link_to edit_to_do_list_path(to_do_list), class: "btn btn-info" do %>Edit<% end %></td>
 
