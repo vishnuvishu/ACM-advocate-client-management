@@ -83,9 +83,6 @@
 
       </div>
 
-
-
-
     <div class="col-md-4">
 
         <div class="row mb">
@@ -94,7 +91,8 @@
           </div>
 
           <div class="col-md-9">
-              <%= f.text_field :case_year %><br>
+              <%= f.text_field :case_year %>
+              <%#= f.select :case_year, ['option1', 'option2'], id: "year" , prompt: "Select Year" %>
               <span id="caseYearError"></span>
           </div>
         </div>
@@ -136,7 +134,7 @@
           </div>
 
           <div class="col-md-9">
-           <%= f.text_field :client_name %><br>
+           <%= f.collection_select :client_name, Client.all, :id, :name, prompt: "Select Client" %><br>
            <span id="clientNameError"></span>
           </div>
         </div>
@@ -330,4 +328,20 @@
 
 </script> 
 
+
+<!-- <script type="text/javascript">
+for(y = 2000; y <= 2500; y++) {
+        var optn = document.createElement("OPTION");
+        optn.text = y;
+        optn.value = y;
+        
+        // if year is 2015 selected
+        if (y == 2017) {
+            optn.selected = true;
+        }
+        
+        document.getElementById('year').options.add(optn);
+}
+</script>
+ -->
 

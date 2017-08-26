@@ -71,7 +71,7 @@ class ToDoListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def to_do_list_params
-      params.require(:to_do_list).permit(:title, :description, :list_date, :client_case_id, :advocate_id, :advocate_to, :advocate_from, :is_litigation)
+      params.require(:to_do_list).permit(:title, :description, :list_date, :client_case_id, :advocate_id, :is_litigation)
     end
 end
   
