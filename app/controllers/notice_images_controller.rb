@@ -1,6 +1,8 @@
 class NoticeImagesController < ApplicationController
   before_action :set_notice_image, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /notice_images
   # GET /notice_images.json
   def index
@@ -29,7 +31,7 @@ class NoticeImagesController < ApplicationController
 
     respond_to do |format|
       if @notice_image.save
-        format.html { redirect_to @notice_image, notice: 'Notice image was successfully created.' }
+        format.html { redirect_to :back, notice: 'Notice image was successfully created.' }
         format.json { render :show, status: :created, location: @notice_image }
       else
         format.html { render :new }
@@ -41,9 +43,10 @@ class NoticeImagesController < ApplicationController
   # PATCH/PUT /notice_images/1
   # PATCH/PUT /notice_images/1.json
   def update
+    @notice_image = NoticeImage.new(notice_image_params)
     respond_to do |format|
       if @notice_image.update(notice_image_params)
-        format.html { redirect_to @notice_image, notice: 'Notice image was successfully updated.' }
+        format.html { redirect_to notice_path(@notice), notice: 'Notice image was successfully updated.' }
         format.json { render :show, status: :ok, location: @notice_image }
       else
         format.html { render :edit }

@@ -159,10 +159,8 @@
   }
 
    emailHandle.onblur = function(){
-    if(emailHandle.value.length == ""){
-      emailErrorHandle.innerHTML = "can't be blank";
-    }
-     else if(!validateEmail(emailHandle.value)){
+
+     if(!validateEmail(emailHandle.value)){
       emailErrorHandle.innerHTML = "invalid email format";
     }
     else{

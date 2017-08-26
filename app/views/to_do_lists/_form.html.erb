@@ -35,7 +35,6 @@
         <div class="col-md-5">
           <%= f.text_field :description %>
         </div>
-        <span id="ToDoListDescriptionError"></span>
       </div>
 
       <div class="row mb">
@@ -47,6 +46,29 @@
           <%= f.text_field :list_date %>
         </div>
       </div>
+
+  </div>
+
+      <div class="row mb">
+        <div class="col-md-2">
+          <%= f.label :is_litigation %><br>
+        </div>
+
+        <div class="col-md-5">
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.label :is_litigation, "Litigation", :value => "Litigation" %> 
+              <%= f.radio_button :is_litigation, true %>
+            </div>
+            <div class="col-md-6">
+                <%= f.label :is_litigation, "Non Litigation", :value => "Non Litigation" %>
+                <%= f.radio_button :is_litigation, false %>
+            </div>
+            </div>
+        </div>
+      </div>
+
+  <div class="form-styling">
 
       <div class="row mb">
         <% if params[:client_case].present? %>
@@ -66,43 +88,15 @@
 
       <div class="row mb">
         <div class="col-md-2">
-          <%= f.label :advocate_from %><br>
+          <%= f.label :advocate %><br>
         </div>
 
         <div class="col-md-5">
-          <%= f.collection_select :advocate_from, Advocate.all, :id, :name, prompt: "Select Advocate" %>
+          <%= f.collection_select :advocate_id, Advocate.all, :id, :name, prompt: "Select Advocate" %>
         </div>
       </div>
 
-      <div class="row mb">
-        <div class="col-md-2">
-          <%= f.label :advocate_to %><br>
-        </div>
-
-        <div class="col-md-5">
-         <%= f.collection_select :advocate_to, Advocate.all, :id, :name, prompt: "Select Advocate" %>
-        </div>
-      </div>
   </div>
-
-      <div class="row mb">
-        <div class="col-md-2">
-          <%= f.label :is_litigation %><br>
-        </div>
-
-        <div class="col-md-5">
-          <div class="row">
-            <div class="col-md-4">
-              <%= f.label :is_litigation, "Litigation", :value => "Litigation"  %> 
-              <%= f.radio_button :is_litigation, true %>
-            </div>
-            <div class="col-md-6">
-                <%= f.label :is_litigation, "Non Litigation", :value => "Non Litigation" %>
-                <%= f.radio_button :is_litigation, false %>
-            </div>
-            </div>
-        </div>
-      </div>
 
       <div class="row mb">
         <div class="col-md-5 col-md-offset-2">
@@ -129,10 +123,8 @@
 
   <script>
     var ToDoListTitleHandle = document.getElementById('to_do_list_title');
-    var ToDoListDescriptionHandle = document.getElementById('to_do_list_description');
 
     var ToDoListTitleErrorHandle = document.getElementById('ToDoListTitleError');
-    var ToDoListDescriptionErrorHandle = document.getElementById('ToDoListDescriptionError');
 
     ToDoListTitleHandle.onblur = function(){
     if(ToDoListTitleHandle.value.length == ""){
@@ -140,15 +132,6 @@
     }
     else{
       ToDoListTitleErrorHandle.innerHTML = "";
-    }
-  }
-
-  ToDoListDescriptionHandle.onblur = function(){
-    if(ToDoListDescriptionHandle.value.length == ""){
-      ToDoListDescriptionErrorHandle.innerHTML = "can't be blank";
-    }
-    else{
-      ToDoListDescriptionErrorHandle.innerHTML = "";
     }
   }
 

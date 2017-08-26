@@ -6,8 +6,8 @@
                         <tr>
                             <td>
                                 Invoice No: <%= @invoice.invoice_number %><br>
-                                Bill Date: <%= @invoice.bill_date.strftime("%Y-%m-%d") %><br>
-                                Due Date: <%= @invoice.due_date.strftime("%Y-%m-%d") %>
+                                Bill Date: <%= @invoice.bill_date.strftime("%d-%m-%Y") %><br>
+                                Due Date: <%= @invoice.due_date.strftime("%d-%m-%Y") %>
 
                             </td>
 
@@ -37,8 +37,8 @@
                             <td>
                                 <%= @invoice.client.name %><br>
                                 <%= @invoice.client.address.capitalize %><br>
-                                <%= @invoice.client.email %><br>
-                                <%= @invoice.client.primary_mobile %>
+                                <%= @invoice.client.primary_mobile %><br>
+                                <%= @invoice.client.email %>
                             </td>
                         </tr>
                     </table>

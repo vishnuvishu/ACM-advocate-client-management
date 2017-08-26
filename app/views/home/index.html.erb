@@ -39,7 +39,7 @@
         <th><h5 data-toggle="tooltip" title="Advocate Appearing">Adv App</h5></th>
         <th><h5 data-toggle="tooltip" title="Client Fee Due">CFD</h5></th>
         <th><h5 data-toggle="tooltip" title="Next Stage">Next Stage</h5></th>
-        <th><h5 data-toggle="modal" data-target="#myModal">Next Date</h5></th>
+        <th><h5 data-toggle="modal" data-target="#myModal">Next Date<i class="fa fa-plus" aria-hidden="true"></i></h5></th>
         <th><h5 data-toggle="tooltip" title="To Do List">To Do List</h5></th> 
       </tr>
     </thead>
@@ -76,7 +76,7 @@
 
           <% else %>
          
-           <%= client_hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
+           <%= client_hearings.last(2).first.date_of_hearing.strftime("%d-%m-%Y") %>
           <% end %>
         </td>
 
@@ -158,7 +158,7 @@
           <% if client_hearings.count == 1 %>
               -
           <% else %>
-            <%= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
+            <%= next_hearings[1].date_of_hearing.strftime("%d-%m-%Y") %>
           <% end %>
         </td>
 

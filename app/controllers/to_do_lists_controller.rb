@@ -1,6 +1,8 @@
 class ToDoListsController < ApplicationController
   before_action :set_to_do_list, only: [:show, :edit, :update, :destroy]
 
+  load_and_authorize_resource
+
   # GET /to_do_lists
   # GET /to_do_lists.json
   def index
@@ -28,7 +30,7 @@ class ToDoListsController < ApplicationController
 
     respond_to do |format|
       if @to_do_list.save
-        format.html { redirect_to @to_do_list, notice: 'To do list was successfully created.' }
+        format.html { redirect_to to_do_lists_path, notice: 'To do list was successfully created.' }
         format.json { render :show, status: :created, location: @to_do_list }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class ToDoListsController < ApplicationController
   def update
     respond_to do |format|
       if @to_do_list.update(to_do_list_params)
-        format.html { redirect_to @to_do_list, notice: 'To do list was successfully updated.' }
+        format.html { redirect_to to_do_lists_path, notice: 'To do list was successfully updated.' }
         format.json { render :show, status: :ok, location: @to_do_list }
       else
         format.html { render :edit }
@@ -69,7 +71,7 @@ class ToDoListsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def to_do_list_params
-      params.require(:to_do_list).permit(:title, :description, :list_date, :client_case_id, :advocate_id, :advocate_to, :advocate_from, :is_litigation)
+      params.require(:to_do_list).permit(:title, :description, :list_date, :client_case_id, :advocate_id, :is_litigation)
     end
 end
   

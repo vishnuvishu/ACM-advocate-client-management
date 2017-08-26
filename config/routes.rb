@@ -1,13 +1,17 @@
 Rails.application.routes.draw do
+  
   get 'home1/index'
 
+  devise_for :users, :path_prefix => 'my'
   resources :payments
   resources :notice_images
   resources :notices
   resources :invoices
   resources :to_do_lists
   resources :all_mobiles
-  devise_for :users
+  resources :roles
+  resources :users
+  
   
   get 'home/index'
   get 'home/reload_table'
@@ -22,9 +26,6 @@ Rails.application.routes.draw do
   resources :fees
   resources :hearings
   resources :advocates
-  #resources :clients
-
-
 
   resources :clients do
     resources :client_cases

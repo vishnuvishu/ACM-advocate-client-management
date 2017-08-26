@@ -16,9 +16,10 @@
 </div>
 
 <div class="main-heading-body"> 
-<table class="table">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Sl no</th>
       <th>Name</th>
       <th>State</th>
       <th>District</th>
@@ -27,8 +28,9 @@
   </thead>
 
   <tbody>
-    <% @court_complexes.each do |court_complex| %>
+    <% @court_complexes.each_with_index do |court_complex, index| %>
       <tr>
+        <td><%= index + 1 %>
         <td><%= court_complex.name %></td>
         <td><%= court_complex.state.name %></td>
         <td><%= court_complex.district.name %></td>

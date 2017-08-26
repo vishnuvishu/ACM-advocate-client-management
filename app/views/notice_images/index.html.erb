@@ -2,9 +2,10 @@
 
 <h1>Listing Notice Images</h1>
 
-<table>
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Sl no</th>
       <th>Name</th>
       <th>Cover</th>
       <th>Notice</th>
@@ -13,8 +14,9 @@
   </thead>
 
   <tbody>
-    <% @notice_images.each do |notice_image| %>
+    <% @notice_images.each_with_index do |notice_image, index| %>
       <tr>
+        <td><%= index + 1 %></td>
         <td><%= notice_image.name %></td>
         <td><%= notice_image.notice_image %></td>
         <td><%= notice_image.notice_id %></td>

@@ -8,9 +8,10 @@
 
 <div class="main-heading-body"> 
 
-<table class="table">
+<table class="table table-bordered table-striped">
   <thead>
     <tr>
+      <th>Sl.no</th>
       <th>Date of hearing</th>
       <th>Advocate</th>
       <th>Case status</th>
@@ -21,8 +22,9 @@
   </thead>
 
   <tbody>
-    <% @hearings.each do |hearing| %>
+    <% @hearings.each_with_index do |hearing, index| %>
       <tr>
+        <td><%= index + 1 %></td>
         <td><%= hearing.date_of_hearing.to_date %></td>
         <td><%= hearing.advocate.name %></td>
         <td><%= hearing.case_status %></td>

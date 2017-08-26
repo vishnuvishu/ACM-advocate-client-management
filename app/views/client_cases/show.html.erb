@@ -56,6 +56,7 @@
             <table class="table" border="0">
 
               <tbody>
+
                 <tr>
                   <td><p><strong>Client:</strong></p></td>
                   <td><p> <%= @client_case.client.name %></p></td>
@@ -80,6 +81,39 @@
                   <td><p><strong>Case</strong></p></td>
                   <td><p><%= @client_case.case_format %></p></td>
                 </tr>
+
+                <tr>
+                  <td><p><strong>Amount to be paid:</strong></p></td>
+                    <% amount_to_be_paid = 0 %>
+                  <td>
+                    <% hearing_amount = @client_case.hearings.pluck(:amount).inject(0){|sum,x| sum + x } %>
+                    <% hearing_fee_amount = 0 %>
+                    <% @client_case.hearings.each do |hearing| %>
+                      <% hearing.fees.each do |fee| %>
+                        <% hearing_fee_amount = hearing_fee_amount + fee.amount  %>
+                      <% end %>
+                    <% end %>
+                    <% total_to_be_paid = hearing_fee_amount + hearing_amount %>
+                    <p><%= total_to_be_paid %></p>
+                  </td> 
+                </tr>
+
+                <tr>
+                  <td><p><strong>Amount paid:</strong></p></td>
+                  <td>
+                    <% total_amount_paid = 0 %>
+                    <% @client_case.hearings.each do |hearing| %>
+                      <% total_amount_paid = total_amount_paid + hearing.payments.pluck(:amount).inject(0){|sum,x| sum + x } %>
+                    <% end %>
+                    <p><%= total_amount_paid %></p>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td><p><strong>Balance:</strong></p></td>
+                  <td><p><%= total_to_be_paid - total_amount_paid %></p></td>
+                </tr> 
+
               </tbody> 
               
             </table>
@@ -87,51 +121,7 @@
           </div>
       </div>
 
-      <div class="row">
-        <div class="col-md-12">
-          <table class="table" border="0">
-
-            <tbody>
-              <tr>
-
-                <td><p><strong>Amount to be paid:</strong></p></td>
-                  <% amount_to_be_paid = 0 %>
-                <td>
-                  <% hearing_amount = @client_case.hearings.pluck(:amount).inject(0){|sum,x| sum + x } %>
-                  <% hearing_fee_amount = 0 %>
-                  <% @client_case.hearings.each do |hearing| %>
-                    <% hearing.fees.each do |fee| %>
-                      <% hearing_fee_amount = hearing_fee_amount + fee.amount  %>
-                    <% end %>
-                  <% end %>
-                  <% total_to_be_paid = hearing_fee_amount + hearing_amount %>
-                  <p><%= total_to_be_paid %></p>
-                </td>
-
-              </tr>
-
-               <tr>
-
-                <td><p><strong>Amount paid:</strong></p></td>
-                <td>
-                  <% total_amount_paid = 0 %>
-                  <% @client_case.hearings.each do |hearing| %>
-                    <% total_amount_paid = total_amount_paid + hearing.payments.pluck(:amount).inject(0){|sum,x| sum + x } %>
-                  <% end %>
-                  <p><%= total_amount_paid %></p>
-                </td>
-
-              </tr>
-
-               <tr>
-                <td><p><strong>Balance:</strong></p></td>
-                <td><p><%= total_to_be_paid - total_amount_paid %></p></td>
-              </tr>   
-            </tbody>
-          </table>
-        </div>
-
-      </div>
+    
       </div>
 
       <div class="col-md-6">

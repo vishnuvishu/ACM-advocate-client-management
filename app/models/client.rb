@@ -7,10 +7,9 @@ class Client < ActiveRecord::Base
 	accepts_nested_attributes_for :all_mobiles, :allow_destroy => true
 
 
-	validates_presence_of :name, :address, :pincode, :email, :primary_mobile
-	validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i
+	validates_presence_of :name, :address, :pincode, :primary_mobile
 	validates :primary_mobile, length: { is: 10 }
 	validates :pincode, length: { is: 6 }
-	validates_uniqueness_of :primary_mobile, :email
+	validates_uniqueness_of :primary_mobile
 
 end

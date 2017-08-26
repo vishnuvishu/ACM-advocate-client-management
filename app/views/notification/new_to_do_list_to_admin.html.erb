@@ -1,0 +1,24 @@
+<p>Dear <strong>Admin</strong>,</p>
+
+<p>You have created a notification for the case <strong><%= @to_do_list.client_case.case_format %></strong> listed on <strong><%= @to_do_list.list_date.strftime("%d-%m-%Y") %> </strong>which is assigned to Mr/Ms: <strong><%= @to_do_list.advocate.name %></strong></p>
+
+<p><strong>Notification Details</strong></p>
+
+<p><strong>Title: </strong><%= @to_do_list.title %></p>
+<p><strong>Description:</strong> <%= @to_do_list.description %></p>
+<p><strong>List Date: </strong><%= @to_do_list.list_date.strftime("%d-%m-%Y") %></p>
+<p><strong>Case: </strong><%= @to_do_list.client_case.case_format %></p>
+<p><strong>Is litigation: </strong>
+	<% if @to_do_list.is_litigation == true %>
+        <%= "litigation" %>
+    <% else %>
+        <%= "non litigation" %>
+    <% end %>
+</p>
+<p>For any further assistance call us at 26675877 or mail us at acm@gmail.com</p>
+
+<p>Best Regards</p>
+<p>Director</p>
+<p>Advocates Client Management</p>
+
+<img src="http://teamsigmato.com/acm/advocates-logo3.png" style="width:200px; width: 100px;">

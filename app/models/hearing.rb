@@ -20,11 +20,5 @@ class Hearing < ActiveRecord::Base
 	def send_new_hearing_notification
 		Notification.new_hearing(self).deliver!
 	end
-
-	# def calculation
-	# 	client_case =  self.client_case
-	# 	self.fees.each do |fee|
-	# 		500 - fee.amount_paid
-	# 	end
-	# end
+	
 end
