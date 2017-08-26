@@ -17,10 +17,8 @@ class ClientCase < ActiveRecord::Base
 	validates :case_year, length: { is: 4 }
 	validates_numericality_of :case_number
 
-	
-
 	def case_format
-		"#{self.case_type.name.split("-").first}-#{self.case_number}/#{self.case_year.to_s.split("").slice(2,3).join("")} #{self.client_name} Vs #{self.opponent_name}"
+		"#{self.case_type.name.split("-").first}-#{self.case_number}/#{self.case_year.to_s.split("").slice(2,3).join("")} #{self.client.name} Vs #{self.opponent_name}"
 	end
 
 	#case format can be displayed in any page of the application just by calling this method.
