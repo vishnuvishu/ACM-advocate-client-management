@@ -49,12 +49,12 @@ namespace :deploy do
    desc 'Restart application'
    task :restart do
       on roles(:app), in: :sequence, wait: 5 do
-         invoke 'puma:restart'
+         invoke 'puma:start'
       end
    end
 
    before :starting,     :check_revision
    after  :finishing,    :compile_assets
    after  :finishing,    :cleanup
-   after  :finishing,    :start
+   after  :finishing,    :restart
 end
