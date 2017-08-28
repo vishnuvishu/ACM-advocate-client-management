@@ -71,6 +71,7 @@
                     <tr>
                       <td><a href="#" class="small-image" id="<%= notice_image.notice_image.url %>"><%= image_tag(notice_image.notice_image.url, size:"25x25")  %></a></td>
                       <td><p><%= notice_image.name %></p></td>
+                      <td><%= link_to edit_notice_image_path(notice_image), class: "btn btn-info" do %>Edit <% end %></td>
                      </tr>
                 <% end %>
               </tbody>

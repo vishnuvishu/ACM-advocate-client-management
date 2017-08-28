@@ -27,30 +27,23 @@
         <!--  Previous Advocate -->
         <td>
           <% client_hearings = hearing.client_case.hearings %> 
-          <% next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+          <% prev_hearings = client_hearings.where('date_of_hearing < ?', hearing.date_of_hearing).order('date_of_hearing') %>
           <% if client_hearings.count == 1 || hearing.date_of_hearing.to_date == Date.today %>
               -
           <% else %>
-            <%= next_hearings[0].advocate.name %>
+            <%= prev_hearings.last.advocate.name %>
           <% end %>
         </td>
 
 
-        <!--  Previous Date -->
+           <!--  Previous Date -->
         <td>
           <% client_hearings = hearing.client_case.hearings %> 
-          <% minus_hearing = hearing.id - 1 %>
-          <%# next_hearings =  client_hearings.where('date_of_hearing <= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+          <% prev_hearings = client_hearings.where('date_of_hearing < ?', hearing.date_of_hearing).order('date_of_hearing') %>
           <% if client_hearings.count == 1 || hearing.date_of_hearing.to_date == Date.today %>
               -
-          <% elsif hearing.id = minus_hearing %>
-
-            <%= hearing.date_of_hearing.strftime("%Y-%m-%d") %>
-
-
           <% else %>
-         
-           <%= client_hearings.last(2).first.date_of_hearing.strftime("%Y-%m-%d") %>
+           <%= prev_hearings.last.date_of_hearing.strftime("%d-%m-%Y") %>
           <% end %>
         </td>
 
@@ -113,12 +106,12 @@
         </td>
 
 
-        <!-- Next Stage -->
+         <!-- Next Stage -->
         <td>
-          <% client_hearings = hearing.client_case.hearings %> 
-
+          <% client_hearings = hearing.client_case.hearings %>
           <% next_hearings =  client_hearings.where('date_of_hearing >= ?', hearing.date_of_hearing).order('date_of_hearing') %>
-          <% if client_hearings.count == 1 %>
+
+          <% if client_hearings.count == 1 || next_hearings.count == 1 %>
               -
           <% else %>
               <%= next_hearings[1].case_status %> 
@@ -129,10 +122,13 @@
 
         <!-- Next Date -->
         <td>
-          <% if client_hearings.count == 1 %>
+          <% client_hearings = hearing.client_case.hearings %>
+          <% next_hearings =  client_hearings.where('date_of_hearing >= ?', hearing.date_of_hearing).order('date_of_hearing') %>
+
+          <% if client_hearings.count == 1  || next_hearings.count == 1 %>
               -
           <% else %>
-            <%= next_hearings[1].date_of_hearing.strftime("%Y-%m-%d") %>
+            <%= next_hearings[1].date_of_hearing.strftime("%d-%m-%Y") %>
           <% end %>
         </td>
 
@@ -231,7 +227,7 @@
               $( function() {
                 $( "#hearing_date_of_hearing" ).datepicker({
                   dateFormat: 'yy-mm-dd',
-                  // minDate: 0,
+                  minDate: 0,
                   changeMonth: true,
                   changeYear: true
                 });
@@ -263,7 +259,6 @@ $(document).ready(function(){
       casestatus: false,
       clientcase: false
     } 
-
 
       var dateOfHearingHandle = document.getElementById('hearing_date_of_hearing');
       var advocateHandle = document.getElementById('hearing_advocate_id')

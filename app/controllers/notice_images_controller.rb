@@ -46,7 +46,7 @@ class NoticeImagesController < ApplicationController
     @notice_image = NoticeImage.new(notice_image_params)
     respond_to do |format|
       if @notice_image.update(notice_image_params)
-        format.html { redirect_to notice_path(@notice), notice: 'Notice image was successfully updated.' }
+        format.html { redirect_to notice_images_url_path(@notice), notice: 'Notice image was successfully updated.' }
         format.json { render :show, status: :ok, location: @notice_image }
       else
         format.html { render :edit }

@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:sign_up, keys: [:full_name, :phone, :role_id])
   	end 
   	#to permit additional parameters (the lazy way)
-
   	
   		rescue_from CanCan::AccessDenied do |exception|
 	      respond_to do |format|
