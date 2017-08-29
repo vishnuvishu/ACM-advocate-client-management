@@ -43,10 +43,9 @@ class NoticeImagesController < ApplicationController
   # PATCH/PUT /notice_images/1
   # PATCH/PUT /notice_images/1.json
   def update
-    @notice_image = NoticeImage.new(notice_image_params)
     respond_to do |format|
       if @notice_image.update(notice_image_params)
-        format.html { redirect_to notice_images_url_path(@notice), notice: 'Notice image was successfully updated.' }
+        format.html { redirect_to :back, notice: 'Notice image was successfully updated.' }
         format.json { render :show, status: :ok, location: @notice_image }
       else
         format.html { render :edit }
@@ -60,7 +59,7 @@ class NoticeImagesController < ApplicationController
   def destroy
     @notice_image.destroy
     respond_to do |format|
-      format.html { redirect_to notice_images_url, notice: 'Notice image was successfully destroyed.' }
+      format.html { redirect_to notices_images_path, notice: 'Notice image was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

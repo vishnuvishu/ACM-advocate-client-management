@@ -139,7 +139,7 @@
           <% if client_hearings.count == 1 || next_hearings.count == 1 %>
               -
           <% else %>
-              <%= next_hearings[1].case_status %> 
+              <%= link_to next_hearings[1].case_status, client_case_hearing_path(hearing.client_case, next_hearings[1]) %> 
           <% end %>
         </td> 
 

@@ -26,7 +26,8 @@
       <div class="col-md-4 col-md-offset-4">
         <div class="field">
           <%= f.label :invoice_number %><br>
-          <%= f.text_field :invoice_number %>
+          <%#= f.text_field :invoice_number %>
+          <%= f.text_field :invoice_number, value: @invoice.generate_invoice_no %>
         </div>
         <div class="field">
           <%= f.label :bill_date %><br>
